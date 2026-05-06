@@ -1,0 +1,92 @@
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "login-functionality;valid-login",
+        "keyword": "Scenario",
+        "line": 3,
+        "name": "Valid Login",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 1515717099
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "user is on login page",
+            "match": {
+              "location": "tests\\Steps\\loginSteps.js:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1374259500
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 6,
+            "name": "user enters valid username and password",
+            "match": {
+              "location": "tests\\Steps\\loginSteps.js:14"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 132117000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "user clicks login button",
+            "match": {
+              "location": "tests\\Steps\\loginSteps.js:21"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 189919699
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 8,
+            "name": "user should login successfully",
+            "match": {
+              "location": "tests\\Steps\\loginSteps.js:26"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3007305900
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 684276900
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "login-functionality",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Login Functionality",
+    "tags": [],
+    "uri": "tests\\Features\\login.feature"
+  }
+]
