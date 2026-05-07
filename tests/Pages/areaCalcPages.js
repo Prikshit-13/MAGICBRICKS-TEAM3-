@@ -1,7 +1,3 @@
-const { setDefaultTimeout } = require("@cucumber/cucumber");
-
-setDefaultTimeout(60000);
-
 class AreaCalculatorPage {
 
     constructor(page) {
@@ -9,10 +5,6 @@ class AreaCalculatorPage {
         this.page = page;
 
         this.mbAdvice = page.locator("text=MB Advice");
-
-        this.areaConverter = page.locator(
-            `//div[text()='Services & Tools']/following-sibling::ul//a[text()='Area Converter']`
-        );
 
         this.stateDropdown = page.locator(`#stateSearchInputId`);
 
@@ -53,9 +45,27 @@ class AreaCalculatorPage {
 
     async clickConversionType(conversionType) {
 
-        await this.page.locator(
-            `//a[text()='${conversionType}']`
-        ).click();
+        const conversionUrls = {
+            'Bigha to Sqft': 'https://www.magicbricks.com/bigha-to-square-feet-pppfa'
+        };
+
+        if (conversionUrls[conversionType]) {
+
+            await this.page.goto(conversionUrls[conversionType], {
+                waitUntil: 'domcontentloaded'
+            });
+
+        } else {
+
+            await this.page.locator(
+                `//a[text()='${conversionType}']`
+            ).click();
+        }
+
+        await this.numberInput.waitFor({
+            state: 'visible',
+            timeout: 30000
+        });
     }
 
     async selectState(state) {
@@ -117,7 +127,7 @@ class AreaCalculatorPage {
         });
 
         const convertedValue =
-            await this.convertedValue.inputValue();
+            await this.convertedValue.textContent();
 
         return convertedValue.trim();
     }

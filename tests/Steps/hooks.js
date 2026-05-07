@@ -1,9 +1,11 @@
-const { Before, After } = require('@cucumber/cucumber');
+const { Before, After, setDefaultTimeout } = require('@cucumber/cucumber');
 
 const { chromium } = require('@playwright/test');
 const path = require('path');
 
 const { AreaCalculatorPage } = require('../Pages/areaCalcPages');
+
+setDefaultTimeout(60000);
 
 let browser;
 let context;

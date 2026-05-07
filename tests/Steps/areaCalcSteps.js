@@ -34,6 +34,10 @@ When('User selects {string} state', async function (state) {
     console.log(`State: ${state}`);
 
     await global.areaCalculatorPage.selectState(state);
+
+    await expect(
+        global.areaCalculatorPage.stateDropdown
+    ).toHaveValue(state);
 });
 
 When('User enters {string} units', async function (units) {
@@ -41,6 +45,10 @@ When('User enters {string} units', async function (units) {
     console.log(`Units: ${units}`);
 
     await global.areaCalculatorPage.enterUnits(units);
+
+    await expect(
+        global.areaCalculatorPage.numberInput
+    ).toHaveValue(units);
 });
 
 When('User takes screenshot', async function () {
