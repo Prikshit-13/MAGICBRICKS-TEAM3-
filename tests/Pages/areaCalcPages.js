@@ -1,58 +1,6 @@
-// class AreaCalculatorPage {
+const { setDefaultTimeout } = require("@cucumber/cucumber");
 
-//     constructor(page) {
-
-//         this.page = page;
-
-//         this.mbAdvice = page.locator("text=MB Advice");
-
-//         this.areaConverter = page.locator(`//div[text()='Services & Tools']/following-sibling::ul//a[text()='Area Converter']`);
-
-//         this.bighaToSqft = page.locator("//a[text()='Bigha to Sqft']");
-
-//         this.stateDropdown = page.locator(`//input[@id="stateSearchInputId"]`);
-
-//         this.state = page.locator(`//div[@data-value="Uttar Pradesh"]`);
-
-//         this.number = page.locator(`#fromNumber`);
-//     }
-
-//     async openApplication()
-//     {
-//         await this.page.goto(`https://www.magicbricks.com/`);
-//     }
-
-//     async clickAreaConverter() {
-
-//         await this.mbAdvice.hover();
-
-//         await this.areaConverter.click();
-//     }
-
-//     async clickBighaToSqft() {
-
-//         await this.bighaToSqft.click();
-//     }
-
-//     async selectState() {
-
-//         await this.stateDropdown.selectOption({
-//             label: "Uttar Pradesh"
-//         });
-//     }
-
-//     async enterUnits(value) {
-
-//         await this.unitInput.fill(value);
-//     }
-
-//     async getConvertedValue() {
-
-//         return await this.convertedOutput.inputValue();
-//     }
-// }
-
-// module.exports = { AreaCalculatorPage };
+setDefaultTimeout(60000);
 
 class AreaCalculatorPage {
 
@@ -75,40 +23,103 @@ class AreaCalculatorPage {
 
     async openApplication() {
 
-        await this.page.goto(`https://www.magicbricks.com/`);
-        await this.page.waitForLoadState('networkidle');
+        await this.page.goto(
+            `https://www.magicbricks.com/?reloadHome=true`,
+            {
+                waitUntil: 'domcontentloaded'
+            }
+        );
+
+        await this.mbAdvice.waitFor({
+            state: 'visible',
+            timeout: 30000
+        });
     }
 
     async clickAreaConverter() {
 
-        await this.mbAdvice.hover();
+        await this.page.goto(
+            `https://www.magicbricks.com/area-converter-pppfa`,
+            {
+                waitUntil: 'domcontentloaded'
+            }
+        );
 
-        await this.areaConverter.click();
+        await this.numberInput.waitFor({
+            state: 'visible',
+            timeout: 30000
+        });
     }
 
     async clickConversionType(conversionType) {
 
-        await this.page.locator(`//a[text()='${conversionType}']`).click();
+        await this.page.locator(
+            `//a[text()='${conversionType}']`
+        ).click();
     }
 
     async selectState(state) {
 
+        await this.stateDropdown.scrollIntoViewIfNeeded();
+
         await this.stateDropdown.click();
 
-        await this.stateDropdown.fill(state);
+        await this.stateDropdown.fill('');
 
-        await this.page.locator(`//div[@data-value='${state}']`).click();
+        await this.stateDropdown.pressSequentially(state, {
+            delay: 100
+        });
+
+        await this.page.evaluate((stateName) => {
+
+            window.stateAutosuggest.selectedVal(
+                stateName,
+                'stateSearchInputId'
+            );
+
+        }, state);
+
+        await this.page.waitForFunction((stateName) => {
+
+            return document.querySelector(
+                '#stateSearchInputId'
+            )?.value === stateName;
+
+        }, state);
     }
 
     async enterUnits(units) {
 
-        await this.numberInput.fill(units);
-    }
+        await this.numberInput.scrollIntoViewIfNeeded();
 
+        await this.numberInput.click();
+
+        await this.numberInput.fill('');
+
+        await this.numberInput.pressSequentially(units, {
+            delay: 100
+        });
+
+        await this.page.waitForFunction((unitValue) => {
+
+            return document.querySelector(
+                '#fromNumber'
+            )?.value === unitValue;
+
+        }, units);
+    }
 
     async getConvertedValue() {
 
-        return await this.convertedValue.inputValue();
+        await this.convertedValue.waitFor({
+            state: 'visible',
+            timeout: 30000
+        });
+
+        const convertedValue =
+            await this.convertedValue.inputValue();
+
+        return convertedValue.trim();
     }
 }
 

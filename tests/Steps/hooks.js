@@ -1,6 +1,7 @@
 const { Before, After } = require('@cucumber/cucumber');
 
 const { chromium } = require('@playwright/test');
+const path = require('path');
 
 const { AreaCalculatorPage } = require('../Pages/areaCalcPages');
 
@@ -11,6 +12,8 @@ let areaCalculatorPage;
 
 Before(async function () {
 
+    const authFile = path.join(__dirname, '..', 'authenticate', 'authData.json');
+
     browser = await chromium.launch({
         headless: false
     });
@@ -18,7 +21,7 @@ Before(async function () {
     context = await browser.newContext({
 
         // Session storage login
-        storageState: "tests/authenticate/authData.json"
+        storageState: authFile
     });
 
     page = await context.newPage();
@@ -33,5 +36,7 @@ Before(async function () {
 
 After(async function () {
 
-    await browser.close();
+    if (browser) {
+        await browser.close();
+    }
 });

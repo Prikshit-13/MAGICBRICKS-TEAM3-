@@ -2,10 +2,10 @@
   "cookies": [
     {
       "name": "_gid",
-      "value": "GA1.2.200913984.1778136812",
+      "value": "GA1.2.1155064487.1778143627",
       "domain": ".magicbricks.com",
       "path": "/",
-      "expires": 1778223243,
+      "expires": 1778230084,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
@@ -15,27 +15,37 @@
       "value": "google",
       "domain": ".accounts.magicbricks.com",
       "path": "/",
-      "expires": 1812696813.038319,
+      "expires": 1812703628.095643,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_gcl_au",
+      "value": "1.1.570218063.1778143628",
+      "domain": ".magicbricks.com",
+      "path": "/",
+      "expires": 1785919628,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
     },
     {
       "name": "UID",
-      "value": "104f2b2abc70def5b0941d21778136812",
+      "value": "1919e29fbdb701a6461905e1778143627",
       "domain": ".scorecardresearch.com",
       "path": "/",
-      "expires": 1811832813.106297,
+      "expires": 1811839628.411863,
       "httpOnly": false,
       "secure": true,
       "sameSite": "None"
     },
     {
       "name": "XID",
-      "value": "104f2b2abc70def5b0941d21778136812",
+      "value": "1919e29fbdb701a6461905e1778143627",
       "domain": ".scorecardresearch.com",
       "path": "/",
-      "expires": 1811832813.106416,
+      "expires": 1811839628.411952,
       "httpOnly": false,
       "secure": true,
       "sameSite": "None",
@@ -43,21 +53,11 @@
       "_crHasCrossSiteAncestor": true
     },
     {
-      "name": "_gcl_au",
-      "value": "1.1.192769572.1778136813",
-      "domain": ".magicbricks.com",
-      "path": "/",
-      "expires": 1785912813,
-      "httpOnly": false,
-      "secure": false,
-      "sameSite": "Lax"
-    },
-    {
       "name": "_gat",
       "value": "1",
       "domain": ".magicbricks.com",
       "path": "/",
-      "expires": 1778136887,
+      "expires": 1778143704,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
@@ -67,37 +67,37 @@
       "value": "c47e83bd297c45ffa607e2ecb9e6f711",
       "domain": ".magicbricks.com",
       "path": "/",
-      "expires": 1812696837.752365,
+      "expires": 1812703657.202503,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
     },
     {
       "name": "IDE",
-      "value": "AHWqTUlgbau8Q9528xcHXlZb7Y42b0_2r2bWETDCtEhdXB3dpffiu7BMX58QyfNv",
+      "value": "AHWqTUmdkaZSJQBZTG_L9eiv0kwJx6NSOL0-jdexsjSgzzKfnWNlMuYMLxfV1RNt",
       "domain": ".doubleclick.net",
       "path": "/",
-      "expires": 1812696837.877184,
+      "expires": 1812703657.367882,
       "httpOnly": true,
       "secure": true,
       "sameSite": "None"
     },
     {
       "name": "ACEGI_SECURITY_HASHED_REMEMBER_ME_COOKIE",
-      "value": "NzA4NTMwMjc6MTc3OTM0NjQ0MTk2ODozOTY4NzI3ZmUxYzZkOGE3NjUzYjdiOWUwNTkzYmNjMQ==",
+      "value": "NzA4NTMwMjc6MTc3OTM1MzI2MTc3MTpiMTAxMGZlOTViNzA4MzgzYTU3OTRjMzRjOGU4MGZkYw==",
       "domain": ".magicbricks.com",
       "path": "/",
-      "expires": 1779346438.219325,
+      "expires": 1779353258.087232,
       "httpOnly": true,
       "secure": true,
       "sameSite": "Lax"
     },
     {
       "name": "ANOTHER_COOKIE",
-      "value": "NzA4NTMwMjc6MTc3OTM0NjQ0MTk2ODozOTY4NzI3ZmUxYzZkOGE3NjUzYjdiOWUwNTkzYmNjMQ==",
+      "value": "NzA4NTMwMjc6MTc3OTM1MzI2MTc3MTpiMTAxMGZlOTViNzA4MzgzYTU3OTRjMzRjOGU4MGZkYw==",
       "domain": ".magicbricks.com",
       "path": "/",
-      "expires": 1779346438.219483,
+      "expires": 1779353258.087429,
       "httpOnly": true,
       "secure": true,
       "sameSite": "Lax"
@@ -107,14 +107,14 @@
       "value": "fa14788513cfbe4522054d93de768dea56d32b54e2b44aacc908dae220204f7328f005ccd8887b472bd1240223c0deff528ae68fc7a2bd433f04196c3c94015680316786f907357a3451bd186a8fb626",
       "domain": ".magicbricks.com",
       "path": "/",
-      "expires": 1812696838.219527,
+      "expires": 1812703658.087495,
       "httpOnly": false,
       "secure": true,
       "sameSite": "Lax"
     },
     {
       "name": "USERAUTHSESSIONID",
-      "value": "3a414b59-8ce3-4f36-b296-e70149e3882b",
+      "value": "494bb431-49a5-4646-9a8c-a35ce77a1637",
       "domain": ".magicbricks.com",
       "path": "/",
       "expires": -1,
@@ -124,7 +124,7 @@
     },
     {
       "name": "JSESSIONID",
-      "value": "9EF3EFD10A9F6AFC4C9AF6AFC4B30E35-n1.13143",
+      "value": "F975CA468B709B47C1C94D75051D7597-n2.13143",
       "domain": ".magicbricks.com",
       "path": "/",
       "expires": -1,
@@ -137,7 +137,7 @@
       "value": "true",
       "domain": "www.magicbricks.com",
       "path": "/",
-      "expires": 1779000837.458376,
+      "expires": 1779007658.77675,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
@@ -204,7 +204,7 @@
     },
     {
       "name": "NODBSESSION",
-      "value": "Mjk2MDI5MzUtZDQxMy00ODQ5LWEyNTUtNjMzMjNmYzA4OTFl",
+      "value": "NTA3NmU3NjItMDQ3NC00NWYxLWE2OTUtNThkODBlZjE0MTQ1",
       "domain": ".magicbricks.com",
       "path": "/",
       "expires": -1,
@@ -213,31 +213,41 @@
       "sameSite": "Lax"
     },
     {
-      "name": "CLID",
-      "value": "fc05434daa4b485c953c4a89d14291fd.20260507.20270507",
-      "domain": "www.clarity.ms",
-      "path": "/",
-      "expires": 1809672839.332201,
-      "httpOnly": true,
-      "secure": true,
-      "sameSite": "None"
-    },
-    {
       "name": "_ga",
-      "value": "GA1.2.2094841406.1778136812",
+      "value": "GA1.2.1492923914.1778143627",
       "domain": ".magicbricks.com",
       "path": "/",
-      "expires": 1812696843.523736,
+      "expires": 1812703684.463035,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
     },
     {
+      "name": "CLID",
+      "value": "1fe460640f75496d87a9eb534cd7f4a6.20260507.20270507",
+      "domain": "www.clarity.ms",
+      "path": "/",
+      "expires": 1809679661.843614,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
       "name": "_clck",
-      "value": "dj0iqp%5E2%5Eg5u%5E0%5E2318",
+      "value": "1sk89p2%5E2%5Eg5u%5E0%5E2318",
       "domain": ".magicbricks.com",
       "path": "/",
-      "expires": 1809672839,
+      "expires": 1809679662,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_clsk",
+      "value": "1faawc%5E1778143663716%5E1%5E1%5El.clarity.ms%2Fcollect",
+      "domain": ".magicbricks.com",
+      "path": "/",
+      "expires": 1778230063,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
@@ -247,17 +257,17 @@
       "value": "Thu May 07 2026",
       "domain": "www.magicbricks.com",
       "path": "/",
-      "expires": 1778223240,
+      "expires": 1778230065,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
     },
     {
       "name": "MUID",
-      "value": "0375B91452C86BA92985AE4653CE6A57",
+      "value": "317A30557FB66CE22A9D27077EB06DC4",
       "domain": ".bing.com",
       "path": "/",
-      "expires": 1811832840.495659,
+      "expires": 1811839666.262422,
       "httpOnly": false,
       "secure": true,
       "sameSite": "None"
@@ -267,17 +277,17 @@
       "value": "0",
       "domain": ".c.bing.com",
       "path": "/",
-      "expires": 1778741640.49577,
+      "expires": 1778748466.262615,
       "httpOnly": false,
       "secure": true,
       "sameSite": "None"
     },
     {
       "name": "SRM_B",
-      "value": "0375B91452C86BA92985AE4653CE6A57",
+      "value": "317A30557FB66CE22A9D27077EB06DC4",
       "domain": ".c.bing.com",
       "path": "/",
-      "expires": 1811832840.495802,
+      "expires": 1811839666.26266,
       "httpOnly": false,
       "secure": true,
       "sameSite": "None"
@@ -294,10 +304,10 @@
     },
     {
       "name": "MUID",
-      "value": "0375B91452C86BA92985AE4653CE6A57",
+      "value": "317A30557FB66CE22A9D27077EB06DC4",
       "domain": ".clarity.ms",
       "path": "/",
-      "expires": 1811832840.651693,
+      "expires": 1811839666.837544,
       "httpOnly": false,
       "secure": true,
       "sameSite": "None"
@@ -307,7 +317,7 @@
       "value": "0",
       "domain": ".c.clarity.ms",
       "path": "/",
-      "expires": 1778741640.651738,
+      "expires": 1778748466.83763,
       "httpOnly": false,
       "secure": true,
       "sameSite": "None"
@@ -317,27 +327,27 @@
       "value": "0",
       "domain": ".c.clarity.ms",
       "path": "/",
-      "expires": 1778137440.651757,
+      "expires": 1778144266.837665,
       "httpOnly": false,
       "secure": true,
       "sameSite": "None"
     },
     {
-      "name": "_clsk",
-      "value": "17k395s%5E1778136840756%5E1%5E1%5Ek.clarity.ms%2Fcollect",
+      "name": "_gali",
+      "value": "mbB2cPS-popup-full",
       "domain": ".magicbricks.com",
       "path": "/",
-      "expires": 1778223240,
+      "expires": 1778143714,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
     },
     {
       "name": "_ga_Y3D9LD1B01",
-      "value": "GS2.1.s1778136813$o1$g1$t1778136843$j30$l0$h0",
+      "value": "GS2.1.s1778143628$o1$g1$t1778143684$j4$l0$h0",
       "domain": ".magicbricks.com",
       "path": "/",
-      "expires": 1812696843.533433,
+      "expires": 1812703684.481775,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
@@ -349,11 +359,11 @@
       "localStorage": [
         {
           "name": "_gcl_ls",
-          "value": "{\"schema\":\"gcl\",\"version\":1,\"gcl_ctr\":{\"value\":{\"value\":0,\"timeouts\":0,\"errors\":0,\"eopCount\":0,\"creationTimeMs\":1778136839476},\"expires\":1785912839476}}"
+          "value": "{\"schema\":\"gcl\",\"version\":1,\"gcl_ctr\":{\"value\":{\"value\":0,\"timeouts\":0,\"errors\":0,\"eopCount\":0,\"creationTimeMs\":1778143661609},\"expires\":1785919661609}}"
         },
         {
           "name": "LoginDate",
-          "value": "1778136839421"
+          "value": "1778143663651"
         }
       ]
     },
@@ -362,7 +372,7 @@
       "localStorage": [
         {
           "name": "_gcl_ls",
-          "value": "{\"schema\":\"gcl\",\"version\":1,\"gcl_ctr\":{\"value\":{\"value\":0,\"timeouts\":0,\"errors\":0,\"eopCount\":0,\"creationTimeMs\":1778136813289},\"expires\":1785912813289}}"
+          "value": "{\"schema\":\"gcl\",\"version\":1,\"gcl_ctr\":{\"value\":{\"value\":0,\"timeouts\":0,\"errors\":0,\"eopCount\":0,\"creationTimeMs\":1778143628262},\"expires\":1785919628262}}"
         }
       ]
     }
