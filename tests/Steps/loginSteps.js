@@ -1,29 +1,29 @@
-const { Given, When, Then } = require('@cucumber/cucumber');
+// const { Given, When, Then } = require('@cucumber/cucumber');
 
-const LoginPage = require('../Pages/LoginPage');
+// const LoginPage = require('../Pages/LoginPage');
 
-let login;
+// let login;
 
-Given('user is on login page', async function () {
+// Given('user is on login page', async function () {
 
-  login = new LoginPage(this.page);
+//   login = new LoginPage(this.page);
 
-  await login.openWebsite();
-});
+//   await login.openWebsite();
+// });
 
-When('user enters valid username and password', async function () {
+// When('user enters valid username and password', async function () {
 
-  await login.enterUsername('standard_user');
+//   await login.enterUsername('standard_user');
 
-  await login.enterPassword('secret_sauce');
-});
+//   await login.enterPassword('secret_sauce');
+// });
 
-When('user clicks login button', async function () {
+// When('user clicks login button', async function () {
 
-  await login.clickLogin();
-});
+//   await login.clickLogin();
+// });
 
-Then('user should login successfully', async function () {
+// Then('user should login successfully', async function () {
 
-  await this.page.waitForTimeout(3000);
-});
+//   await this.page.waitForTimeout(3000);
+// });

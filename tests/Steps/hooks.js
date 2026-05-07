@@ -1,16 +1,37 @@
 const { Before, After } = require('@cucumber/cucumber');
-const { chromium } = require('playwright');
+
+const { chromium } = require('@playwright/test');
+
+const { AreaCalculatorPage } = require('../Pages/areaCalcPages');
+
+let browser;
+let context;
+let page;
+let areaCalculatorPage;
 
 Before(async function () {
 
-  this.browser = await chromium.launch({
-    headless: false
-  });
+    browser = await chromium.launch({
+        headless: false
+    });
 
-  this.page = await this.browser.newPage();
+    context = await browser.newContext({
+
+        // Session storage login
+        storageState: "tests/authenticate/authData.json"
+    });
+
+    page = await context.newPage();
+
+    areaCalculatorPage = new AreaCalculatorPage(page);
+
+    // Make globally accessible
+    global.page = page;
+
+    global.areaCalculatorPage = areaCalculatorPage;
 });
 
 After(async function () {
 
-  await this.browser.close();
+    await browser.close();
 });
