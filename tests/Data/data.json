@@ -4,5 +4,58 @@
   "mobile": "9814810510",
   "minArea": "100",
   "maxArea": "25000",
-  "url": "https://www.magicbricks.com/"
+  "url": "https://www.magicbricks.com/",
+  "magicbricks": {
+    "baseUrl": "https://www.magicbricks.com/?reloadHome=true",
+    "homeUrl": "https://www.magicbricks.com/",
+    "newProjectsUrl": "https://www.magicbricks.com/new-projects/Bangalore-Residential-projects",
+    "chennaiSearchUrl": "https://www.magicbricks.com/property-for-sale-in-chennai-pppfs",
+    "homeLoan": {
+      "emiCalculatorUrl": "https://www.magicbricks.com/homeloan/emi-calculator",
+      "eligibilityCalculatorUrl": "https://www.magicbricks.com/homeloan/eligibility-calculator",
+      "emi": {
+        "loanAmount": "5000000",
+        "interestRate": "8.5",
+        "tenureYears": "20",
+        "propertyFinalized": "No"
+      },
+      "invalidEmiInputs": [
+        {
+          "loanAmount": "abcd",
+          "interestRate": "8.5",
+          "tenureYears": "20"
+        },
+        {
+          "loanAmount": "500@0000",
+          "interestRate": "8.5",
+          "tenureYears": "20"
+        },
+        {
+          "loanAmount": "5000000",
+          "interestRate": "abc",
+          "tenureYears": "20"
+        },
+        {
+          "loanAmount": "5000000",
+          "interestRate": "8.5",
+          "tenureYears": "20abc"
+        },
+        {
+          "loanAmount": "50@000",
+          "interestRate": "xyz",
+          "tenureYears": "20x"
+        }
+      ],
+      "invalidInterestRates": [
+        {
+          "rate": "-1",
+          "description": "negative number"
+        },
+        {
+          "rate": "abc",
+          "description": "alphabetic text"
+        }
+      ]
+    }
+  }
 }

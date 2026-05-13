@@ -34,7 +34,7 @@ async function saveAuth(browserType = 'chromium') {
 
    const page = await context.newPage();
 
-   await page.goto('https://www.magicbricks.com/');
+   await page.goto('https://accounts.magicbricks.com/userauth/login?logout=success');
 
    console.log(`Login manually in ${browserType} browser`);
 
@@ -54,7 +54,6 @@ async function saveAuth(browserType = 'chromium') {
    await browser.close();
 }
 
-const browserType = process.env.BROWSER || 'chromium';
 const browserType = process.env.BROWSER || 'chromium';
 
 saveAuth(browserType);

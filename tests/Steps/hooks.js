@@ -9,8 +9,10 @@ const { BalanceTransferPage } = require('../Pages/balanceTransferPage');
 // const { FeaturedProjectPage } = require('../Pages/featuredProjectPage');
 const { PremiumHomesPage } = require('../Pages/premiumHomesPage');
 const { NewProjectsPage } = require('../Pages/newProjectsPage');
+const { HomeLoanPage } = require('../Pages/homeLoanPage');
+const { FeatureprojectPage } = require('../Pages/featureprojectPage');
 
-setDefaultTimeout(60000);
+setDefaultTimeout(90000);
 
 let browser;
 let context;
@@ -21,6 +23,8 @@ let balanceTransferPage;
 // let featuredProjectPage;
 let premiumHomesPage;
 let newProjectsPage;
+let homeLoanPage;
+let featureprojectPage;
 
 Before(async function () {
 
@@ -63,6 +67,10 @@ Before(async function () {
 
     newProjectsPage = new NewProjectsPage(page);
 
+    homeLoanPage = new HomeLoanPage(page);
+
+    featureprojectPage = new FeatureprojectPage(page);
+
     // Global access
     global.page = page;
 
@@ -75,6 +83,10 @@ Before(async function () {
     global.premiumHomesPage = premiumHomesPage;
 
     global.newProjectsPage = newProjectsPage;
+
+    global.homeLoanPage = homeLoanPage;
+
+    global.featureprojectPage = featureprojectPage;
 });
 
 After(async function () {
