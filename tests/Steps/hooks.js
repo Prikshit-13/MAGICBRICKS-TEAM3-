@@ -3,9 +3,6 @@ const { Before, After, setDefaultTimeout } = require('@cucumber/cucumber');
 const { chromium } = require('@playwright/test');
 const path = require('path');
 
-const { AreaCalculatorPage } = require('../Pages/areaCalcPages');
-const { BalanceTransferPage } = require('../Pages/balanceTransferPage.js');
-//const { MagicBricksPage } = require('../Pages/magicbricksPage.js');
 const { HomeLoanPage } = require('../Pages/homeLoanPage.js');
 const {FeatureprojectPage} = require('../Pages/featureprojectPage.js');
 
@@ -15,9 +12,6 @@ setDefaultTimeout(90000);
 let browser;
 let context;
 let page;
-let areaCalculatorPage;
-let balanceTransferPage;
-let magicBricksPage;
 let homeLoanPage;
 let featureprojectPage;
 Before(async function () {
@@ -42,16 +36,11 @@ Before(async function () {
         timeout: 60000
     });
 
-    areaCalculatorPage = new AreaCalculatorPage(page);
-    balanceTransferPage = new BalanceTransferPage(page);
-    //magicBricksPage     = new MagicBricksPage(page);
     homeLoanPage        = new HomeLoanPage(page);
     featureprojectPage  = new FeatureprojectPage(page);
+    
     // Make all page objects globally accessible across step files
     global.page              = page;
-    global.areaCalculatorPage = areaCalculatorPage;
-    global.balanceTransferPage = balanceTransferPage;
-    //global.magicBricksPage    = magicBricksPage;
     global.homeLoanPage       = homeLoanPage;
     global.featureprojectPage = featureprojectPage;
 });

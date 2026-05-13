@@ -78,12 +78,10 @@ class HomeLoanPage {
 
             console.log(`Interest rate #${index + 1} error displayed: ${hasError ? 'YES' : 'NO'}`);
 
+            // Skip page reload for iterations except last — just reload the form
             if (index < invalidRates.length - 1) {
-                await this.page.goto(this.data.emiCalculatorUrl, {
-                    waitUntil: 'domcontentloaded',
-                    timeout: 60000
-                });
-                await this.page.waitForTimeout(1500);
+                await this.page.reload({ waitUntil: 'domcontentloaded' });
+                await this.page.waitForTimeout(800);
             }
         }
 
@@ -116,9 +114,14 @@ class HomeLoanPage {
         ];
 
         for (const locator of errorLocators) {
-            const element = this.page.locator(locator).first();
-            if (await element.isVisible({ timeout: 2000 }).catch(() => false)) {
-                return true;
+            try {
+                const element = this.page.locator(locator).first();
+                const isVisible = await element.isVisible({ timeout: 500 }).catch(() => false);
+                if (isVisible) {
+                    return true;
+                }
+            } catch (_) {
+                // Continue to next locator if this one errors
             }
         }
 
@@ -226,7 +229,7 @@ class HomeLoanPage {
                 }
             }
         }
-        await this.page.waitForTimeout(2500);
+        await this.page.waitForTimeout(1500);
     }
 
     async verifyEMIResultsDisplayed() {
