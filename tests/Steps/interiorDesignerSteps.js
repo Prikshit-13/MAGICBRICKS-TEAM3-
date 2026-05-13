@@ -1,69 +1,40 @@
-// const {Given, When, Then, setDefaultTimeout} = require('@cucumber/cucumber');
+const { Given, When, Then } = require('@cucumber/cucumber');
+const { InteriorDesignerPage } = require('../Pages/interiorDesignerPage');
 
-// const {InteriorDesignerPage} = require('../Pages/interiorDesignerPage');
+Given('user opens MagicBricks home page for interior designer', async function () {
+    global.interiorDesignerPage = new InteriorDesignerPage(global.page);
 
-// setDefaultTimeout(60000);
+    await global.interiorDesignerPage.openHomePage();
+});
 
-// let homePage;
-// let designerPage;
-// let firstItemPage;
-// let designIdeaPage;
+When('user hovers on MB Advice', async function () {
+    await global.interiorDesignerPage.openMBAdviceTab();
+});
 
-// Given('user is on MagicBricks home page', async function () {
+When('user selects interior designers Bangalore', async function () {
+    await global.interiorDesignerPage.clickInteriorDesignersOption();
+});
 
-    
-//     homePage = new InteriorDesignerPage(global.page);
+When('user selects first interior designer', async function () {
+    await global.interiorDesignerPage.selectFirstInteriorDesigner();
+});
 
-//     await homePage.openHomePage();
-// });
+When('user scrolls to bottom of designer page', async function () {
+    await global.interiorDesignerPage.scrollToBottom();
+});
 
-// When('user opens MB Advice tab', async function () {
+When('user opens 4BHK design ideas', async function () {
+    await global.interiorDesignerPage.openFourBhkDesignIdeas();
+});
 
-//     await homePage.openMBAdviceTab();
-// });
+When('user selects first design idea', async function () {
+    await global.interiorDesignerPage.selectFirstDesignIdea();
+});
 
-// When('user clicks on Interior Designers option', async function () {
+When('user clicks get price estimate', async function () {
+    await global.interiorDesignerPage.clickGetPriceEstimate();
+});
 
-//     const newPage = await homePage.clickInteriorDesignersOption();
-//     designerPage = new InteriorDesignerPage(newPage);
-// });
-
-// When('user selects first interior designer', async function () {
-
-//     const newPage =
-//         await designerPage.selectFirstInteriorDesigner();
-
-//     firstItemPage =
-//         new InteriorDesignerPage(newPage);
-// });
-
-// When('user scrolls to bottom of designer page', async function () {
-
-//     await firstItemPage.scrollToBottom();
-// });
-
-// When('user opens 4BHK design ideas', async function () {
-
-//     await firstItemPage.openFourBhkDesignIdeas();
-// });
-
-// When('user selects first design idea', async function () {
-
-//     const newPage =
-//         await firstItemPage.selectFirstDesignIdea();
-
-//     designIdeaPage =
-//         new InteriorDesignerPage(newPage);
-// });
-
-// When('user clicks on Get Price Estimate', async function () {
-
-//     await designIdeaPage.clickGetPriceEstimate();
-// });
-
-// Then('user should see call scheduled message', async function () {
-
-//     await designIdeaPage.verifyCallScheduledMessage();
-
-//     await browser.close();
-// });
+Then('user should see call scheduled message', async function () {
+    await global.interiorDesignerPage.verifyCallScheduledMessage();
+});

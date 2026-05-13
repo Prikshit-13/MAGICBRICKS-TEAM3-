@@ -1,13 +1,13 @@
-Feature: MagicBricks Interior Designer Flow
-    
-    @interiorDesignerVatan
-    Scenario: Schedule call for 4BHK design idea
-        Given user is on MagicBricks home page
-        When user opens MB Advice tab
-        And user clicks on Interior Designers option
-        And user selects first interior designer
-        And user scrolls to bottom of designer page
-        And user opens 4BHK design ideas
-        And user selects first design idea
-        And user clicks on Get Price Estimate
-        Then user should see call scheduled message
+Feature: Interior Designer
+
+  @interiorDesignerVatan
+  Scenario: Schedule call for 4BHK design idea
+    Given user opens MagicBricks home page for interior designer
+    When user hovers on MB Advice
+    And user selects interior designers Bangalore
+    And user selects first interior designer
+    And user scrolls to bottom of designer page
+    And user opens 4BHK design ideas
+    And user selects first design idea
+    And user clicks get price estimate
+    Then user should see call scheduled message

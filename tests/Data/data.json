@@ -4,5 +4,7 @@
   "mobile": "9814810510",
   "minArea": "100",
   "maxArea": "25000",
-  "url": "https://www.magicbricks.com/"
+  "url": "https://www.magicbricks.com/",
+  "invalidMinArea": "-500",
+  "invalidMaxArea": "-100"
 }
