@@ -3,51 +3,58 @@ const path = require('path');
 
 async function saveAuth(browserType = 'chromium') {
 
-    let browser;
+   let browser;
 
-    switch (browserType.toLowerCase()) {
+   switch (browserType.toLowerCase()) {
 
-        case 'firefox':
-            browser = await firefox.launch({
-                headless: false
-            });
-            break;
+       case 'firefox':
 
-        case 'webkit':
-            browser = await webkit.launch({
-                headless: false
-            });
-            break;
+           browser = await firefox.launch({
+               headless: false
+           });
 
-        default:
-            browser = await chromium.launch({
-                headless: false
-            });
-    }
+           break;
 
-    const context = await browser.newContext();
-    const page = await context.newPage();
+       case 'webkit':
 
-    await page.goto('https://www.magicbricks.com/');
+           browser = await webkit.launch({
+               headless: false
+           });
 
-    console.log(`Login manually in ${browserType} browser`);
+           break;
 
-    await page.waitForTimeout(60000);
+       default:
 
-    const authFile = path.join(
-        __dirname,
-        `authData-${browserType}.json`
-    );
+           browser = await chromium.launch({
+               headless: false
+           });
+   }
 
-    await context.storageState({
-        path: authFile
-    });
+   const context = await browser.newContext();
 
-    console.log(`${browserType} auth saved successfully`);
+   const page = await context.newPage();
 
-    await browser.close();
+   await page.goto('https://www.magicbricks.com/');
+
+   console.log(`Login manually in ${browserType} browser`);
+
+   await page.waitForTimeout(60000);
+
+   const authFile = path.join(
+       __dirname,
+       `authData-${browserType}.json`
+   );
+
+   await context.storageState({
+       path: authFile
+   });
+
+   console.log(`${browserType} auth saved successfully`);
+
+   await browser.close();
 }
 
+const browserType = process.env.BROWSER || 'chromium';
 const browserType = process.env.BROWSER || 'chromium';
 
 saveAuth(browserType);
