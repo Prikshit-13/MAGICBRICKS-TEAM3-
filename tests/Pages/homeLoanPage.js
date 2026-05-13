@@ -288,6 +288,9 @@ class HomeLoanPage {
 
     async fillEligibilityDetails() {
         const d = this.data.eligibility;
+        if (!d) {
+            throw new Error('Missing eligibility test data: please add magicbricks.homeLoan.eligibility to tests/Data/data.json');
+        }
 
         // ── Net Monthly Income ───────────────────
         // ID confirmed: incomePerMonthEliCal

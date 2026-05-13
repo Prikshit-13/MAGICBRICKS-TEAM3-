@@ -19,6 +19,12 @@
         "tenureYears": "20",
         "propertyFinalized": "No"
       },
+      "eligibility": {
+        "netMonthlyIncome": "120000",
+        "ongoingEMI": "15000",
+        "interestRate": "8.5",
+        "tenureYears": "20"
+      },
       "invalidEmiInputs": [
         {
           "loanAmount": "abcd",
