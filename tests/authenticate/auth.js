@@ -1,61 +1,60 @@
-
 const { chromium, firefox, webkit } = require('@playwright/test');
-
 const path = require('path');
 
 async function saveAuth(browserType = 'chromium') {
 
-    let browser;
+   let browser;
 
-    switch (browserType.toLowerCase()) {
+   switch (browserType.toLowerCase()) {
 
-        case 'firefox':
+       case 'firefox':
 
-            browser = await firefox.launch({
-                headless: false
-            });
+           browser = await firefox.launch({
+               headless: false
+           });
 
-            break;
+           break;
 
-        case 'webkit':
+       case 'webkit':
 
-            browser = await webkit.launch({
-                headless: false
-            });
+           browser = await webkit.launch({
+               headless: false
+           });
 
-            break;
+           break;
 
-        default:
+       default:
 
-            browser = await chromium.launch({
-                headless: false
-            });
-    }
+           browser = await chromium.launch({
+               headless: false
+           });
+   }
 
-    const context = await browser.newContext();
+   const context = await browser.newContext();
 
-    const page = await context.newPage();
+   const page = await context.newPage();
 
-    await page.goto('https://www.magicbricks.com/');
+   await page.goto('https://www.magicbricks.com/');
 
-    console.log(`Login manually in ${browserType} browser`);
+   console.log(`Login manually in ${browserType} browser`);
 
-    await page.waitForTimeout(60000);
+   await page.waitForTimeout(60000);
 
-    const authFile = path.join(
-        __dirname,
-        `authData-${browserType}.json`
-    );
+   const authFile = path.join(
+       __dirname,
+       `authData-${browserType}.json`
+   );
 
-    await context.storageState({
-        path: authFile
-    });
+   await context.storageState({
+       path: authFile
+   });
 
-    console.log(`${browserType} auth saved successfully`);
+   console.log(`${browserType} auth saved successfully`);
 
-    await browser.close();
+   await browser.close();
 }
 
+const browserType = process.env.BROWSER || 'chromium';
 const browserType = process.env.BROWSER || 'chromium';
 
 saveAuth(browserType);
