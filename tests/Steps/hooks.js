@@ -1,7 +1,9 @@
+
 const { Before, After, setDefaultTimeout } = require('@cucumber/cucumber');
 
-const { chromium } = require('@playwright/test');
 const path = require('path');
+
+const { launchBrowser } = require('../../utils/browserUtils');
 
 const { AreaCalculatorPage } = require('../Pages/areaCalcPages');
 const { BalanceTransferPage } = require('../Pages/balanceTransferPage');
@@ -17,15 +19,22 @@ let balanceTransferPage;
 
 Before(async function () {
 
-    const authFile = path.join(__dirname, '..', 'authenticate', 'authData.json');
+    // const authFile = path.join(__dirname, '..', 'authenticate', 'authData.json');
 
-    browser = await chromium.launch({
-        headless: false
-    });
+
+    const browserType = process.env.BROWSER || 'chromium';
+
+    const authFile = path.join(
+        __dirname,
+        '..',
+        'authenticate',
+        `authData-${browserType}.json`
+    );
+
+    browser = await launchBrowser(browserType);
 
     context = await browser.newContext({
 
-        // Session storage login
         storageState: authFile
     });
 
@@ -35,7 +44,6 @@ Before(async function () {
     areaCalculatorPage = new AreaCalculatorPage(page);
     balanceTransferPage = new BalanceTransferPage(page);
 
-    // Make globally accessible
     global.page = page;
 
     global.areaCalculatorPage = areaCalculatorPage;
@@ -46,6 +54,7 @@ Before(async function () {
 After(async function () {
 
     if (browser) {
+
         await browser.close();
     }
 });

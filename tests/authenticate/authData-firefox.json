@@ -1,0 +1,458 @@
+{
+  "cookies": [
+    {
+      "name": "firstInteractionCookie",
+      "value": "F",
+      "domain": ".magicbricks.com",
+      "path": "/",
+      "expires": 1794164047.759,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "cookieDtfirstIntr",
+      "value": "20260513",
+      "domain": ".magicbricks.com",
+      "path": "/",
+      "expires": 1794164047.771,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "HDSESSIONID",
+      "value": "20c4aee6-fa09-4f4b-b71b-6ed6559675f9",
+      "domain": ".magicbricks.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_clck",
+      "value": "865r4u%5E2%5Eg5z%5E0%5E2323",
+      "domain": ".magicbricks.com",
+      "path": "/",
+      "expires": 1810148050,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "None"
+    },
+    {
+      "name": "userNTrackId",
+      "value": "65ccd69a-6e7b-4065-9d77-28f245a197e6",
+      "domain": "www.magicbricks.com",
+      "path": "/",
+      "expires": 1810148050,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "NOEU",
+      "value": "new",
+      "domain": "www.magicbricks.com",
+      "path": "/",
+      "expires": 1810148050,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "previousTab",
+      "value": "tabBUY",
+      "domain": "www.magicbricks.com",
+      "path": "/",
+      "expires": 1778698450,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "semAttributesCookie",
+      "value": "Direct%23",
+      "domain": ".magicbricks.com",
+      "path": "/",
+      "expires": 1781204050,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_clsk",
+      "value": "a5y0v8%5E1778612051341%5E1%5E1%5Et.clarity.ms%2Fcollect",
+      "domain": ".magicbricks.com",
+      "path": "/",
+      "expires": 1778698451,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "None"
+    },
+    {
+      "name": "_gat_UA-492553-10",
+      "value": "1",
+      "domain": ".magicbricks.com",
+      "path": "/",
+      "expires": 1778612111,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "None"
+    },
+    {
+      "name": "alertRaisedCount",
+      "value": "1",
+      "domain": ".magicbricks.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "npsId",
+      "value": "803447",
+      "domain": ".magicbricks.com",
+      "path": "/",
+      "expires": 1810148053,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "USERAUTHSESSIONID",
+      "value": "25b55a3e-d6b0-4840-ac73-65f4af0549aa",
+      "domain": ".magicbricks.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_gcl_au",
+      "value": "1.1.356461382.1778612052",
+      "domain": ".magicbricks.com",
+      "path": "/",
+      "expires": 1786388052,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "None"
+    },
+    {
+      "name": "G_ENABLED_IDPS",
+      "value": "google",
+      "domain": ".accounts.magicbricks.com",
+      "path": "/",
+      "expires": 1813172055.634,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "None"
+    },
+    {
+      "name": "_gat",
+      "value": "1",
+      "domain": ".magicbricks.com",
+      "path": "/",
+      "expires": 1778612136,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "None"
+    },
+    {
+      "name": "userCookie",
+      "value": "08ac7868c95e4c338c5bada6bd47ebcc",
+      "domain": ".magicbricks.com",
+      "path": "/",
+      "expires": 1813172094.91,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "None"
+    },
+    {
+      "name": "_gali",
+      "value": "verifyOtpDiv",
+      "domain": ".magicbricks.com",
+      "path": "/",
+      "expires": 1778612124,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "None"
+    },
+    {
+      "name": "ACEGI_SECURITY_HASHED_REMEMBER_ME_COOKIE",
+      "value": "NzA4NzA3OTU6MTc3OTgyMTY5NTYwMDo3MzMwYjgyNWEwMjRlZDAwNjhiZDBjY2QzMDJmNTlmYg==",
+      "domain": ".magicbricks.com",
+      "path": "/",
+      "expires": 1779821695.374,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "ANOTHER_COOKIE",
+      "value": "NzA4NzA3OTU6MTc3OTgyMTY5NTYwMDo3MzMwYjgyNWEwMjRlZDAwNjhiZDBjY2QzMDJmNTlmYg==",
+      "domain": ".magicbricks.com",
+      "path": "/",
+      "expires": 1779821695.375,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "userUniqToken",
+      "value": "bb470255517a600603e145889d11c37d4cdaffe4c8290d93443687096f1068edd7ecae0515727e76cf767fb9ff8589fa979e0759503b1cf4081eca47322bfa3880316786f907357a3451bd186a8fb626",
+      "domain": ".magicbricks.com",
+      "path": "/",
+      "expires": 1813172095.376,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "JSESSIONID",
+      "value": "4B47F435E1F8CF81558A9EDE7F3E5D4F-n1.13140",
+      "domain": ".magicbricks.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "manageProjectReco",
+      "value": "true",
+      "domain": "www.magicbricks.com",
+      "path": "/",
+      "expires": 1779476095.573,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "None"
+    },
+    {
+      "name": "BRICKSONBOARDING",
+      "value": "ONBOARDING",
+      "domain": ".magicbricks.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "None"
+    },
+    {
+      "name": "_gid",
+      "value": "GA1.2.2111755734.1778612051",
+      "domain": ".magicbricks.com",
+      "path": "/",
+      "expires": 1778698496,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "None"
+    },
+    {
+      "name": "_ga_Y3D9LD1B01",
+      "value": "GS2.1.s1778612051$o1$g1$t1778612097$j14$l0$h0",
+      "domain": ".magicbricks.com",
+      "path": "/",
+      "expires": 1813172097.05,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "None"
+    },
+    {
+      "name": "_ga",
+      "value": "GA1.1.1132606814.1778612051",
+      "domain": ".magicbricks.com",
+      "path": "/",
+      "expires": 1813172097.05,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "None"
+    },
+    {
+      "name": "_fbp",
+      "value": "fb.1.1778612097922.875933171574992123",
+      "domain": ".magicbricks.com",
+      "path": "/",
+      "expires": 1786388097,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "None"
+    },
+    {
+      "name": "_col_uuid",
+      "value": "45e9b4f5-2093-4930-b330-933c349e6520-619o",
+      "domain": ".magicbricks.com",
+      "path": "/",
+      "expires": 1813172097.939,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "None"
+    },
+    {
+      "name": "IDE",
+      "value": "AHWqTUm6noxpb06uGPyNcRyhkaUDUuwYyNxFc2r7XfL528dUHlzj6TmgcwV66CfT",
+      "domain": ".doubleclick.net",
+      "path": "/",
+      "expires": 1813172055.729,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_col_uuid",
+      "value": "45e9b4f5-2093-4930-b330-933c349e6520-619o",
+      "domain": ".clmbtech.com",
+      "path": "/",
+      "expires": 1813172097.861,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "abtest",
+      "value": "B",
+      "domain": "ase.clmbtech.com",
+      "path": "/",
+      "expires": 1781204097.863,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "None"
+    },
+    {
+      "name": "CLID",
+      "value": "83dc023a0aff47d798fde3784b6141ee.20260512.20270512",
+      "domain": "www.clarity.ms",
+      "path": "/",
+      "expires": 1810148049.694,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "SM",
+      "value": "C",
+      "domain": ".c.clarity.ms",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "MUID",
+      "value": "3EAA95F23FE465380F4B82A53EE2648F",
+      "domain": ".clarity.ms",
+      "path": "/",
+      "expires": 1812308050.913,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "MR",
+      "value": "0",
+      "domain": ".c.clarity.ms",
+      "path": "/",
+      "expires": 1779216850.913,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "ANONCHK",
+      "value": "0",
+      "domain": ".c.clarity.ms",
+      "path": "/",
+      "expires": 1778612650.914,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "UID",
+      "value": "15F1578dbb3f644de569d711778612054",
+      "domain": ".scorecardresearch.com",
+      "path": "/",
+      "expires": 1812308096.814,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "None"
+    },
+    {
+      "name": "MUID",
+      "value": "3EAA95F23FE465380F4B82A53EE2648F",
+      "domain": ".bing.com",
+      "path": "/",
+      "expires": 1812308050.758,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "MR",
+      "value": "0",
+      "domain": ".c.bing.com",
+      "path": "/",
+      "expires": 1779216850.759,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "SRM_B",
+      "value": "3EAA95F23FE465380F4B82A53EE2648F",
+      "domain": ".c.bing.com",
+      "path": "/",
+      "expires": 1812308050.759,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "https://www.magicbricks.com",
+      "localStorage": [
+        {
+          "name": "knownTrack",
+          "value": "false"
+        },
+        {
+          "name": "_gcl_ls",
+          "value": "{\"schema\":\"gcl\",\"version\":1,\"gcl_ctr\":{\"value\":{\"value\":0,\"timeouts\":0,\"errors\":0,\"eopCount\":0,\"creationTimeMs\":1778612051546},\"expires\":1786388051546}}"
+        },
+        {
+          "name": "userUniqueNTrackId",
+          "value": "65ccd69a-6e7b-4065-9d77-28f245a197e6"
+        },
+        {
+          "name": "rotateFlag",
+          "value": "0"
+        },
+        {
+          "name": "lastExternalReferrer",
+          "value": "other"
+        },
+        {
+          "name": "dmp_lmo",
+          "value": "{\"https://ase.clmbtech.com/message?cid=2319:920&val_101=int:magicbricks.com%2Fbricks&val_102=https%3A%2F%2Fwww.magicbricks.com%2Fbricks%2Fonboarding.html&val_120=0&val_124=https%3A%2F%2Faccounts.magicbricks.com%2F&val_123=meta.keywords&val_101=2319:920\":{\"activity\":{\"time_spent\":null,\"scroll\":null},\"expiry\":1778613897749}}"
+        },
+        {
+          "name": "lastExternalReferrerTime",
+          "value": "1778612097911"
+        }
+      ]
+    },
+    {
+      "origin": "https://accounts.magicbricks.com",
+      "localStorage": [
+        {
+          "name": "_gcl_ls",
+          "value": "{\"schema\":\"gcl\",\"version\":1,\"gcl_ctr\":{\"value\":{\"value\":0,\"timeouts\":0,\"errors\":0,\"eopCount\":0,\"creationTimeMs\":1778612055571},\"expires\":1786388055571}}"
+        }
+      ]
+    }
+  ]
+}
