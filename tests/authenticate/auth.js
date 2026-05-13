@@ -1,40 +1,60 @@
-const { chromium } = require('playwright');
+const { chromium, firefox, webkit } = require('@playwright/test');
+
 const path = require('path');
 
-(async () => {
+async function saveAuth(browserType = 'chromium') {
 
-    const authFile = path.join(__dirname, 'authData.json');
+   let browser;
 
-    const browser = await chromium.launch({
-        headless: false
-    });
+   switch (browserType.toLowerCase()) {
 
+       case 'firefox':
 
-    const context = await browser.newContext();
+           browser = await firefox.launch({
+               headless: false
+           });
 
+           break;
 
-    const page = await context.newPage();
+       case 'webkit':
 
+           browser = await webkit.launch({
+               headless: false
+           });
 
-    await page.goto(`https://accounts.magicbricks.com/userauth/login`);
+           break;
 
+       default:
 
-    console.log("LOGIN MANUALLY");
-    // Wait for 60 seconds to do manual login and capture the authentication state
-    await page.waitForTimeout(60000);
+           browser = await chromium.launch({
+               headless: false
+           });
+   }
 
-    // Store the state after returning to the Magicbricks home page.
-    await page.goto(`https://www.magicbricks.com/`, {
-        waitUntil: 'domcontentloaded'
-    });
+   const context = await browser.newContext();
 
+   const page = await context.newPage();
 
-    await context.storageState({
-        path: authFile
-    });
+   await page.goto('https://www.magicbricks.com/');
 
+   console.log(`Login manually in ${browserType} browser`);
 
-    await browser.close();
+   await page.waitForTimeout(60000);
 
+   const authFile = path.join(
+       __dirname,
+       `authData-${browserType}.json`
+   );
 
-})();
+   await context.storageState({
+       path: authFile
+   });
+
+   console.log(`${browserType} auth saved successfully`);
+
+   await browser.close();
+}
+
+const browserType = process.env.BROWSER || 'chromium';
+
+saveAuth(browserType);

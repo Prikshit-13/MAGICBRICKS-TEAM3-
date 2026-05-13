@@ -13,14 +13,12 @@ When('user opens balance transfer page', async function () {
 Then('user enters existing loan details', async function (dataTable) {
 
     const data = dataTable.hashes()[0];
-
     await global.balanceTransferPage.enterExistingLoanDetails(data);
 });
 
 Then('user enters new loan details', async function (dataTable) {
 
     const data = dataTable.hashes()[0];
-
     await global.balanceTransferPage.enterNewLoanDetails(data);
 });
 
@@ -68,3 +66,4 @@ Then('user captures screenshot of search results', async function () {
 
     await global.balanceTransferPage.captureSearchResultScreenshot();
 });
+

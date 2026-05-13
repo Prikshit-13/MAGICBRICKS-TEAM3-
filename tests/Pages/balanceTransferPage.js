@@ -7,44 +7,38 @@ class BalanceTransferPage {
         this.page = page;
 
         // Home page
+        this.popUp = page.locator('//div[@class="onmodal__cross"]')
         this.homeLoans = page.getByText('Home Loans').first();
-
         this.balanceTransfer = page.getByText('Balance Transfer', { exact: true });
     }
 
     async navigateToHomeLoanSection() {
 
+        await this.popUp.click();
+
         await this.homeLoans.hover();
+
     }
 
     async openBalanceTransferPage() {
 
         const [newPage] = await Promise.all([
-
             this.page.context().waitForEvent('page'),
-
             this.balanceTransfer.click()
-
         ]);
 
         await newPage.waitForLoadState();
-
         this.page = newPage;
 
         // Existing loan details
         this.currentLoanAmount = this.page.locator('#laltc');
-
         this.currentTenure = this.page.locator('#ltltc');
-
         this.currentRate = this.page.locator('#rltc');
-
         this.currentInstallments = this.page.locator('#ipltc');
 
         // New loan details
         this.newProcessingFees = this.page.locator('#pfltc');
-
         this.newTenure = this.page.locator('#nltltc');
-
         this.newRate = this.page.locator('#nrltc');
 
         // Compare button
@@ -60,26 +54,18 @@ class BalanceTransferPage {
     async enterExistingLoanDetails(data) {
 
         await this.currentLoanAmount.click();
-
         await this.currentLoanAmount.press('Control+A');
-
         await this.currentLoanAmount.press('Backspace');
-
         await this.currentLoanAmount.fill(data.currentLoanAmount);
-
         await this.currentTenure.fill(data.currentTenure);
-
         await this.currentRate.fill(data.currentRate);
-
         await this.currentInstallments.fill(data.currentInstallments);
     }
 
     async enterNewLoanDetails(data) {
 
         await this.newProcessingFees.fill(data.newProcessingFees);
-
         await this.newTenure.fill(data.newTenure);
-
         await this.newRate.fill(data.newRate);
     }
 
@@ -90,84 +76,47 @@ class BalanceTransferPage {
 
     async validateOutstandingPrincipleAmount() {
 
-        await expect(
-
-            this.page.locator('text=Outstanding Principal')
-
-        ).toBeVisible();
+        await expect(this.page.locator('text=Outstanding Principal')).toBeVisible();
     }
 
     async validateInterestComparison() {
 
-        await expect(
-
-            this.page.locator('#interestResultDiv')
-
-        ).toBeVisible();
-
-        await expect(
-
-            this.page.locator('#newInterestResultDiv')
-
-        ).toBeVisible();
+        await expect(this.page.locator('#interestResultDiv')).toBeVisible();
+        await expect(this.page.locator('#newInterestResultDiv')).toBeVisible();
     }
 
     async validateUpdatedLoanTenure() {
 
-        await expect(
+        await expect(this.page.locator('#emiTenureResultDiv')).toBeVisible();
 
-            this.page.locator('#emiTenureResultDiv')
-
-        ).toBeVisible();
-
-        await expect(
-
-            this.page.locator('#newemiTenureResultDiv')
-
-        ).toBeVisible();
+        await expect(this.page.locator('#newemiTenureResultDiv')).toBeVisible();
     }
 
     async captureBalanceTransferScreenshot() {
 
-        await this.page.screenshot({
-
-            path: `reports/balanceTransfer-${Date.now()}.png`,
-
-            fullPage: true
-        });
+        await this.page.screenshot({path: `reports/balanceTransfer-${Date.now()}.png`, fullPage: true});
     }
 
     async scrollToNewsSection() {
 
         await this.newsSection.scrollIntoViewIfNeeded();
-
         await this.newsSection.click();
     }
 
     async searchIndiaInArticles() {
 
         await this.searchField.fill('India');
-
         await this.searchField.press('Enter');
     }
 
     async validateArticleResults() {
 
-        await expect(
-
-            this.page.locator('text=India').first()
-
-        ).toBeVisible();
+        await expect(this.page.locator('text=India').first()).toBeVisible();
     }
 
     async captureSearchResultScreenshot() {
 
-        await this.page.screenshot({
-
-            path: `reports/searchResults-${Date.now()}.png`,
-
-            fullPage: true
-        });
+        await this.page.screenshot({path: `reports/searchResults-${Date.now()}.png`, fullPage: true});
     }
 }
 
