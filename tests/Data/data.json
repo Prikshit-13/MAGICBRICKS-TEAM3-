@@ -1,0 +1,87 @@
+{
+  "magicbricks": {
+    "baseUrl": "https://www.magicbricks.com/?reloadHome=true",
+    "homeUrl": "https://www.magicbricks.com/",
+    "newProjectsUrl": "https://www.magicbricks.com/new-projects/Bangalore-Residential-projects",
+    "chennaiSearchUrl": "https://www.magicbricks.com/property-for-sale-in-chennai-pppfs",
+    "homeLoan": {
+      "emiCalculatorUrl": "https://www.magicbricks.com/homeloan/emi-calculator",
+      "eligibilityCalculatorUrl": "https://www.magicbricks.com/homeloan/eligibility-calculator",
+      "emi": {
+        "loanAmount": "5000000",
+        "interestRate": "8.5",
+        "tenureYears": "20",
+        "propertyFinalized": "No"
+      },
+      "invalidEmiInputs": [
+        {
+          "loanAmount": "abcd",
+          "interestRate": "8.5",
+          "tenureYears": "20"
+        },
+        {
+          "loanAmount": "500@0000",
+          "interestRate": "8.5",
+          "tenureYears": "20"
+        },
+        {
+          "loanAmount": "5000000",
+          "interestRate": "abc",
+          "tenureYears": "20"
+        },
+        {
+          "loanAmount": "5000000",
+          "interestRate": "8.5",
+          "tenureYears": "20abc"
+        },
+        {
+          "loanAmount": "50@000",
+          "interestRate": "xyz",
+          "tenureYears": "20x"
+        }
+      ],
+      "invalidInterestRates": [
+        {
+          "rate": "-1",
+          "description": "negative number"
+        },
+        {
+          "rate": "abc",
+          "description": "alphabetic text"
+        },
+        {
+          "rate": "@#$",
+          "description": "special characters"
+        },
+        {
+          "rate": "-0.5",
+          "description": "negative decimal"
+        },
+        {
+          "rate": "",
+          "description": "empty value"
+        },
+        {
+          "rate": "999",
+          "description": "value above maximum"
+        }
+      ],
+      "eligibility": {
+        "netMonthlyIncome": "100000",
+        "ongoingEMI": "10000",
+        "interestRate": "8.5",
+        "tenureYears": "20",
+        "propertyFinalized": "No"
+      }
+    },
+    "review": {
+      "title": "Great Property",
+      "comment": "This is a wonderful property with amazing amenities and great connectivity. Highly recommend!",
+      "rating": "4"
+    },
+    "search": {
+      "location": "Tamil Nadu"
+    }
+    
+  }
+}
