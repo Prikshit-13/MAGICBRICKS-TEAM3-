@@ -1,6 +1,7 @@
 const { Before, After, setDefaultTimeout } = require('@cucumber/cucumber');
 
 const path = require('path');
+const fs = require('fs');
 
 const { launchBrowser } = require('../../utils/browserUtils');
 
@@ -38,10 +39,10 @@ Before(async function () {
     // Launch browser
     browser = await launchBrowser(browserType);
 
-    // Create context with saved login session
+    // Create context with saved login session and video recording
     context = await browser.newContext({
-
-        storageState: authFile
+        storageState: authFile,
+        recordVideo: { dir: 'reports/videos/' }
     });
 
     // Create page
@@ -77,10 +78,31 @@ Before(async function () {
     global.newProjectsPage = newProjectsPage;
 });
 
-After(async function () {
+After(async function (scenario) {
+    if (page) {
+        // Ensure screenshots directory exists
+        const screenshotsDir = path.join(process.cwd(), 'reports', 'screenshots');
+        if (!fs.existsSync(screenshotsDir)) {
+            fs.mkdirSync(screenshotsDir, { recursive: true });
+        }
+
+        // Take screenshot for every scenario to include in report
+        const status = scenario.result?.status === 1 ? 'PASSED' : scenario.result?.status === 2 ? 'FAILED' : 'UNKNOWN';
+        const cleanName = scenario.pickle.name.replace(/[^a-zA-Z0-9]/g, '_');
+        const screenshotName = `${status}_${cleanName}`;
+        const img = await page.screenshot({ path: path.join(screenshotsDir, `${screenshotName}.png`), fullPage: true });
+        this.attach(img, 'image/png');
+        
+        await page.close();
+    }
+
+    if (context) {
+        await context.close(); // Important: closing context saves the video
+        // We can optionally attach the video path
+        // this.attach(`Video saved in reports/videos folder`, 'text/plain');
+    }
 
     if (browser) {
-
         await browser.close();
     }
 });
