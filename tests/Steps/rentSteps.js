@@ -31,12 +31,12 @@ When('user enters rental city', async function () {
     await homePage.enterCity('Bangalore');
 });
 
-When('user applies property type filter', async function () {
+When('user applies filter for property type', async function () {
 
     await homePage.applyPropertyTypeFilter();
 });
 
-When('user applies budget filter', async function () {
+When('user applies filter for budget', async function () {
 
     await homePage.applyBudgetFilter();
 });

@@ -6,8 +6,8 @@ Feature: Rent Property End-to-End Flow
     Given user is on the home page
     When user clicks on Rent tab
     # And user enters rental city
-    And user applies property type filter
-    And user applies budget filter
+    And user applies filter for property type
+    And user applies filter for budget
     And user clicks on Search button
     # And user applies top localities filter
     # And user clicks on Done button
