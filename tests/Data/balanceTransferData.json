@@ -1,5 +1,5 @@
 {
-  "validData": {
+  "validData1": {
     "currentLoanAmount": "250000",
     "currentTenure": "10",
     "currentRate": "10",
@@ -9,13 +9,63 @@
     "newRate": "8"
   },
 
-  "invalidData": {
+  "validData2": {
+    "currentLoanAmount": "300000",
+    "currentTenure": "12",
+    "currentRate": "9",
+    "currentInstallments": "50",
+    "newProcessingFees": "2",
+    "newTenure": "6",
+    "newRate": "7"
+  },
+
+  "validData3": {
+    "currentLoanAmount": "500000",
+    "currentTenure": "15",
+    "currentRate": "11",
+    "currentInstallments": "80",
+    "newProcessingFees": "1",
+    "newTenure": "8",
+    "newRate": "9"
+  },
+
+  "invalidLoanAmount": {
     "currentLoanAmount": "abc",
-    "currentTenure": "0",
-    "currentRate": "-1",
-    "currentInstallments": "-5",
-    "newProcessingFees": "",
-    "newTenure": "",
-    "newRate": ""
+    "currentTenure": "10",
+    "currentRate": "10",
+    "currentInstallments": "40",
+    "newProcessingFees": "1",
+    "newTenure": "4",
+    "newRate": "8"
+  },
+
+  "invalidTenure": {
+    "currentLoanAmount": "250000",
+    "currentTenure": "",
+    "currentRate": "10",
+    "currentInstallments": "40",
+    "newProcessingFees": "1",
+    "newTenure": "6",
+    "newRate": "8"
+  },
+
+  "invalidInstallments": {
+    "currentLoanAmount": "250000",
+    "currentTenure": "19",
+    "currentRate": "12",
+    "currentInstallments": "",
+    "newProcessingFees": "1",
+    "newTenure": "6",
+    "newRate": "9"
+  },
+
+  "invalidInterestRate": {
+    "currentLoanAmount": "250000",
+    "currentTenure": "19",
+    "currentRate": "",
+    "currentInstallments": "3",
+    "newProcessingFees": "1",
+    "newTenure": "6",
+    "newRate": "9"
   }
 }

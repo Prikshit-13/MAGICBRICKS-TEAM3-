@@ -1,0 +1,34 @@
+{
+  "positiveData1": {
+    "location": "Bangalore",
+    "bhk": "2 BHK",
+    "minBudget": "₹ 10 Lac",
+    "maxBudget": "₹ 50 Lac"
+  },
+
+  "positiveData2": {
+    "location": "Navi Mumbai",
+    "bhk": "3 BHK",
+    "minBudget": "₹ 10 Lac",
+    "maxBudget": "₹ 50 Lac"
+  },
+
+  "positiveData3": {
+    "location": "Pune",
+    "bhk": "1 BHK",
+    "minBudget": "₹ 10 Lac",
+    "maxBudget": "₹ 50 Lac"
+  },
+
+   "negativeData1": {
+    "location": "@@@@"
+  },
+
+  "negativeData2": {
+    "location": "123456"
+  },
+
+  "negativeData3": {
+    "location": "InvalidCityXYZ"
+  }
+}

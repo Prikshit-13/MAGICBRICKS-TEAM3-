@@ -73,9 +73,9 @@ class BalanceTransferPage {
 
         await this.currentLoanAmount.click();
 
-        await this.currentLoanAmount.press('Control+A');
+        // await this.currentLoanAmount.press('Control+A');
 
-        await this.currentLoanAmount.press('Backspace');
+        // await this.currentLoanAmount.press('Backspace');
 
         await this.currentLoanAmount.fill(
             data.currentLoanAmount
@@ -196,16 +196,21 @@ class BalanceTransferPage {
         });
     }
 
-    // Negative validation
+   // Negative validation
 
-    async validateInvalidComparison() {
+// Negative validation
 
-        await expect(
+async validateInvalidComparison(validationMessage) {
 
-        this.page.locator('#interestResultDiv')
+    await expect(
 
-    ).toBeVisible();
-    }
+        this.page.getByText(
+            validationMessage,
+            { exact: false }
+        )
+
+    ).not.toBeVisible();
+}
 }
 
 module.exports = { BalanceTransferPage };

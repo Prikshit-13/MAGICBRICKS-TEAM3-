@@ -1,15 +1,15 @@
 Feature: Home Loan Balance Transfer
 
-@balanceTransfer
-Scenario: Validate balance transfer functionality
+@balanceTransfer @harsh
+Scenario Outline: Validate balance transfer functionality
 
 When user navigates to home loan section
 
 And user opens balance transfer page
 
-Then user enters existing loan details
+Then user enters existing loan details "<dataKey>"
 
-Then user enters new loan details
+Then user enters new loan details "<dataKey>"
 
 And user clicks compare button
 
@@ -29,16 +29,29 @@ And relevant articles related to home loans in India should be displayed
 
 Then user captures screenshot of search results
 
+Examples:
+| dataKey |
+| validData1 |
+| validData2 |
+| validData3 |
 
-@balanceTransfer @balanceTransferNegative
-Scenario: Validate application behavior with invalid loan details
+
+@balanceTransferNegative @harsh
+Scenario Outline: Validate application behavior with invalid loan details
 
 When user navigates to home loan section
 
 And user opens balance transfer page
 
-Then user enters invalid loan details
+Then user enters invalid loan details "<dataKey>"
 
 And user clicks compare button
 
-Then comparison result should still be displayed
+Then comparison result should not be displayed "<validationMessage>"
+
+Examples:
+| dataKey                  | validationMessage                                     |
+| invalidLoanAmount        | Please enter valid Amount of Loan                     |
+| invalidTenure            | Please enter valid Tenure                             |
+| invalidInstallments      | Please enter installment                              |
+| invalidInterestRate      | Please enter valid Rate of Interest                   |

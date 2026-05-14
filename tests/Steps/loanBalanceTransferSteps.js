@@ -12,19 +12,25 @@ When('user opens balance transfer page', async function () {
     await global.balanceTransferPage.openBalanceTransferPage();
 });
 
-Then('user enters existing loan details', async function () {
 
-    await global.balanceTransferPage.enterExistingLoanDetails(
-        testData.validData
-    );
+// POSITIVE FLOW
+
+Then('user enters existing loan details {string}', async function (dataKey) {
+
+    const data = testData[dataKey];
+
+    await global.balanceTransferPage.enterExistingLoanDetails(data);
 });
 
-Then('user enters new loan details', async function () {
+Then('user enters new loan details {string}', async function (dataKey) {
 
-    await global.balanceTransferPage.enterNewLoanDetails(
-        testData.validData
-    );
+    const data = testData[dataKey];
+
+    await global.balanceTransferPage.enterNewLoanDetails(data);
 });
+
+
+// COMMON FLOW
 
 Then('user clicks compare button', async function () {
 
@@ -72,22 +78,20 @@ Then('user captures screenshot of search results', async function () {
 });
 
 
-// Negative Scenario
+// NEGATIVE FLOW
 
-Then('user enters invalid loan details', async function () {
+Then('user enters invalid loan details {string}', async function (dataKey) {
 
-    await global.balanceTransferPage.enterExistingLoanDetails(
+    const data = testData[dataKey];
 
-        testData.invalidData
-    );
+    await global.balanceTransferPage.enterExistingLoanDetails(data);
 
-    await global.balanceTransferPage.enterNewLoanDetails(
-
-        testData.invalidData
-    );
+    await global.balanceTransferPage.enterNewLoanDetails(data);
 });
 
-Then('comparison result should still be displayed', async function () {
+Then('comparison result should not be displayed {string}', async function (validationMessage) {
 
-    await global.balanceTransferPage.validateInvalidComparison();
+    await global.balanceTransferPage.validateInvalidComparison(
+        validationMessage
+    );
 });
