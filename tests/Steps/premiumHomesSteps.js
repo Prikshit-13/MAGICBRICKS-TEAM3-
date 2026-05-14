@@ -15,12 +15,12 @@ Then('user searches property for location {string}', async function (location) {
     await global.premiumHomesPage.searchPropertyLocation(location);
 });
 
-Then('user applies property type filter', async function () {
+Then('user applies filter for property type', async function () {
 
     await global.premiumHomesPage.applyPropertyTypeFilter();
 });
 
-Then('user applies budget filter', async function () {
+Then('user applies filter for budget', async function () {
 
     await global.premiumHomesPage.applyBudgetFilter();
 });

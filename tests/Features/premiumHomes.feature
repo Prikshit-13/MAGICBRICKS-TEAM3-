@@ -7,8 +7,8 @@ When user navigates to Buy dropdown
 And user clicks on Premium Homes
 Then user searches property for location "<location>"
 
-And user applies property type filter
-And user applies budget filter
+And user applies filter for property type
+And user applies filter for budget
 
 Then user validates property search results
 

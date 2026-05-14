@@ -5,43 +5,63 @@ const path = require('path');
 const { launchBrowser } = require('../../utils/browserUtils');
 
 const { AreaCalculatorPage } = require('../Pages/areaCalcPages');
+
 const { BalanceTransferPage } = require('../Pages/balanceTransferPage');
+
 // const { FeaturedProjectPage } = require('../Pages/featuredProjectPage');
+
 const { PremiumHomesPage } = require('../Pages/premiumHomesPage');
+
 const { NewProjectsPage } = require('../Pages/newProjectsPage');
 
 setDefaultTimeout(60000);
 
 let browser;
+
 let context;
+
 let page;
 
 let areaCalculatorPage;
+
 let balanceTransferPage;
+
 // let featuredProjectPage;
+
 let premiumHomesPage;
+
 let newProjectsPage;
 
 Before(async function () {
 
     // Browser from terminal
-    const browserType = process.env.BROWSER || 'chromium';
+    const browserType = (process.env.BROWSER || 'chromium').trim();
 
-    // Correct auth file path
-   const authFile = path.join(
-    __dirname,
-    '..',
-    'authenticate',
-    `authData-${browserType}.json`
-);
+    // Auth file path
+    const authFile = path.join(
+
+        __dirname,
+
+        '..',
+
+        'authenticate',
+
+        `authData-${browserType}.json`
+    );
 
     // Launch browser
     browser = await launchBrowser(browserType);
 
-    // Create context with saved login session
+    // Create browser context
     context = await browser.newContext({
 
-        storageState: authFile
+        storageState: authFile,
+
+        // Video recording
+        recordVideo: {
+
+            dir: 'reports/videos/'
+        }
     });
 
     // Create page
@@ -49,10 +69,11 @@ Before(async function () {
 
     // Open MagicBricks
     await page.goto(
+
         'https://www.magicbricks.com/property-for-sale-rent-in-Bangalore/residential-real-estate-Bangalore/?reqFrom=OA'
     );
 
-    // Page object creation
+    // Page objects
     areaCalculatorPage = new AreaCalculatorPage(page);
 
     balanceTransferPage = new BalanceTransferPage(page);
@@ -77,8 +98,36 @@ Before(async function () {
     global.newProjectsPage = newProjectsPage;
 });
 
-After(async function () {
+After(async function (scenario) {
 
+    try {
+
+        if (scenario.result.status === 'FAILED') {
+
+            const screenshot = await page.screenshot({
+
+                path: `reports/failure-${Date.now()}.png`,
+
+                type: 'png',
+
+                fullPage: true
+            });
+
+            await this.attach(screenshot, 'image/png');
+        }
+
+    } catch (error) {
+
+        console.log('Screenshot capture failed');
+    }
+
+    // Close context
+    if (context) {
+
+        await context.close();
+    }
+
+    // Close browser
     if (browser) {
 
         await browser.close();

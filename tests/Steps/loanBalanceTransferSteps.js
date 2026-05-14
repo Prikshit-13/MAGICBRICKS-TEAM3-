@@ -1,5 +1,7 @@
 const { When, Then } = require('@cucumber/cucumber');
 
+const testData = require('../Data/balanceTransferData.json');
+
 When('user navigates to home loan section', async function () {
 
     await global.balanceTransferPage.navigateToHomeLoanSection();
@@ -10,16 +12,18 @@ When('user opens balance transfer page', async function () {
     await global.balanceTransferPage.openBalanceTransferPage();
 });
 
-Then('user enters existing loan details', async function (dataTable) {
+Then('user enters existing loan details', async function () {
 
-    const data = dataTable.hashes()[0];
-    await global.balanceTransferPage.enterExistingLoanDetails(data);
+    await global.balanceTransferPage.enterExistingLoanDetails(
+        testData.validData
+    );
 });
 
-Then('user enters new loan details', async function (dataTable) {
+Then('user enters new loan details', async function () {
 
-    const data = dataTable.hashes()[0];
-    await global.balanceTransferPage.enterNewLoanDetails(data);
+    await global.balanceTransferPage.enterNewLoanDetails(
+        testData.validData
+    );
 });
 
 Then('user clicks compare button', async function () {
@@ -67,3 +71,23 @@ Then('user captures screenshot of search results', async function () {
     await global.balanceTransferPage.captureSearchResultScreenshot();
 });
 
+
+// Negative Scenario
+
+Then('user enters invalid loan details', async function () {
+
+    await global.balanceTransferPage.enterExistingLoanDetails(
+
+        testData.invalidData
+    );
+
+    await global.balanceTransferPage.enterNewLoanDetails(
+
+        testData.invalidData
+    );
+});
+
+Then('comparison result should still be displayed', async function () {
+
+    await global.balanceTransferPage.validateInvalidComparison();
+});

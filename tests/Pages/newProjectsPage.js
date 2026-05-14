@@ -105,7 +105,7 @@ class NewProjectsPage {
 
     async captureProjectScreenshot() {
 
-        await this.page.screenshot({path: `utils/screenshots/newProject-${Date.now()}.png`,fullPage: true});
+        await this.page.screenshot({path: `reports/newProject-${Date.now()}.png`,fullPage: true});
     }
 }
 
