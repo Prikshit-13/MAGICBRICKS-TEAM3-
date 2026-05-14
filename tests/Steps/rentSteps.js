@@ -26,22 +26,24 @@ When('user clicks on Rent tab', async function () {
     await homePage.clickRentTab();
 });
 
-When('user enters rental city', async function () {
+// When('user enters rental city', async function () {
 
-    await homePage.enterCity('Bangalore');
-});
+//     await homePage.enterCity('Bangalore');
+// });
 
-When('user applies filter for property type', async function () {
+
+
+When('the user applies property type filter', async function () {
 
     await homePage.applyPropertyTypeFilter();
 });
 
-When('user applies filter for budget', async function () {
+When('the user applies budget filter', async function () {
 
     await homePage.applyBudgetFilter();
 });
 
-When('user clicks on Search button', async function () {
+When('the user clicks on Search button', async function () {
 
     await homePage.clickSearchButton();
 });
@@ -66,6 +68,20 @@ When('user applies covered area filter', async function () {
     await homePage.applyCoveredArea(
         testData.minArea,
         testData.maxArea
+    );
+});
+
+When('user applies invalid minimum covered area filter', async function () {
+
+    await homePage.applyInvalidMinArea(
+        testData.invalidMinArea
+    );
+});
+
+Then('invalid minimum covered area should not be selected', async function () {
+
+    await homePage.verifyInvalidMinAreaNotSelected(
+        testData.invalidMinArea
     );
 });
 

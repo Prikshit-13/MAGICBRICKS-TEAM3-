@@ -5,12 +5,9 @@ Feature: Rent Property End-to-End Flow
 
     Given user is on the home page
     When user clicks on Rent tab
-    # And user enters rental city
-    And user applies filter for property type
-    And user applies filter for budget
-    And user clicks on Search button
-    # And user applies top localities filter
-    # And user clicks on Done button
+    And the user applies property type filter
+    And the user applies budget filter
+    And the user clicks on Search button
     And user opens More Filters
     And user applies covered area filter
     And user applies posted since filter
@@ -25,13 +22,13 @@ Feature: Rent Property End-to-End Flow
     And user checks certified agents filter
     And user changes view option
     And user opens first property from results
-    # And user clicks on Get Phone Number
-    # And user selects No on popup
-    # And user navigates back to property page
-    # And user opens top agent in locality profile
     Then user clicks on Contact Agent button
-    # And user clicks on Developer option
-    # And user switches to developer page
-    # And user clicks on Completed Projects tab
-    # And user opens first completed project
-    # Then user downloads brochure
+
+  @rentNegativeMinAreaVatan
+  Scenario: User applies invalid minimum covered area filter
+    Given user is on the home page
+    When user clicks on Rent tab
+    And the user clicks on Search button
+    And user opens More Filters
+    And user applies invalid minimum covered area filter
+    Then invalid minimum covered area should not be selected

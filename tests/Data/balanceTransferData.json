@@ -1,0 +1,21 @@
+{
+  "validData": {
+    "currentLoanAmount": "250000",
+    "currentTenure": "10",
+    "currentRate": "10",
+    "currentInstallments": "40",
+    "newProcessingFees": "1",
+    "newTenure": "4",
+    "newRate": "8"
+  },
+
+  "invalidData": {
+    "currentLoanAmount": "abc",
+    "currentTenure": "0",
+    "currentRate": "-1",
+    "currentInstallments": "-5",
+    "newProcessingFees": "",
+    "newTenure": "",
+    "newRate": ""
+  }
+}

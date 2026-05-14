@@ -29,26 +29,33 @@ let featureprojectPage;
 Before(async function () {
 
     // Browser from terminal
-    const browserType = process.env.BROWSER || 'chromium';
+    const browserType = (process.env.BROWSER || 'chromium').trim();
 
-    // Correct auth file path
-   const authFile = path.join(
-    __dirname,
-    '..',
-    'authenticate',
-    `authData-${browserType}.json`
-);
+    // Auth file path
+    const authFile = path.join(
+        __dirname,
+        '..',
+        'authenticate',
+        `authData-${browserType}.json`
+    );
 
     // Launch browser
     browser = await launchBrowser(browserType);
 
-    // Create context with saved login session
+    // Browser context
     context = await browser.newContext({
 
-        storageState: authFile
+        // Login session
+        storageState: authFile,
+
+        // Video recording
+        recordVideo: {
+
+            dir: 'reports/videos/'
+        }
     });
 
-    // Create page
+    // New page
     page = await context.newPage();
 
     // Open MagicBricks
@@ -89,8 +96,45 @@ Before(async function () {
     global.featureprojectPage = featureprojectPage;
 });
 
-After(async function () {
+After(async function (scenario) {
 
+    try {
+
+        // Screenshot only for failed scenarios
+        if (
+
+            scenario.result.status === 'FAILED' &&
+
+            page &&
+
+            !page.isClosed()
+        ) {
+
+            const screenshot = await page.screenshot({
+
+                path: `reports/failure-${Date.now()}.png`,
+
+                type: 'png',
+
+                fullPage: true
+            });
+
+            // Attach screenshot in report
+            await this.attach(screenshot, 'image/png');
+        }
+
+    } catch (error) {
+
+        console.log('Screenshot capture failed');
+    }
+
+    // Close context first for video save
+    if (context) {
+
+        await context.close();
+    }
+
+    // Close browser
     if (browser) {
 
         await browser.close();

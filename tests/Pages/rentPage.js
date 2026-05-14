@@ -9,6 +9,9 @@ exports.RentPropertyPage = class RentPropertyPage {
         // Home page
         this.rentTab = page.locator('//div[@id="tabRENT"]');
         // this.cityInput = page.locator('#keyword');
+        // this.locationButton = page.locator('//div[@class="mb-search__tag-t"]');
+        // this.crossButton = page.locator('//div[@class="mb-search__tag-close"]');
+        // this.cityDropdown = this.page.locator('//input[@class="mb-search__input"]');
 
         // Filters
         // this.propertyTypeFilter = page.locator('(//div[@class="mb-search__title"])[1]');
@@ -99,13 +102,16 @@ exports.RentPropertyPage = class RentPropertyPage {
     }
 
     async clickRentTab() {
+        await this.page.waitForTimeout(5000);
         await this.rentTab.click();
     }
 
-    // async enterCity(city) {
-    //     await this.cityInput.fill(city);
-    //     await this.page.keyboard.press('ArrowDown');
-    //     await this.page.keyboard.press('Enter');
+
+    // async enterCity(location) {
+    //     await this.locationButton.click();
+    //     await this.crossButton.click();
+    //     await this.cityDropdown.fill(location);
+    //     await this.page.locator('div.mb-search__auto-suggest__item').filter({ hasText: new RegExp(`^${location}$`, 'i') }).click();
     // }
 
     async applyPropertyTypeFilter() {
@@ -155,6 +161,35 @@ exports.RentPropertyPage = class RentPropertyPage {
     async applyCoveredArea(minArea, maxArea) {
         await this.minArea.selectOption(minArea);
         await this.maxArea.selectOption(maxArea);
+    }
+
+    async applyInvalidMinArea(invalidMinArea) {
+    this.invalidMinAreaErrorCaught = false;
+
+    await this.minArea.waitFor({
+        state: 'visible',
+        timeout: 60000
+    });
+
+    try {
+        await this.minArea.selectOption(invalidMinArea);
+    } catch (error) {
+        this.invalidMinAreaErrorCaught = true;
+
+        console.log('Invalid minimum area was rejected by dropdown.');
+        console.log('Error message:', error.message);
+    }
+}
+
+    async verifyInvalidMinAreaNotSelected(invalidMinArea) {
+        expect(this.invalidMinAreaErrorCaught).toBeTruthy();
+
+        const selectedMinArea = await this.minArea.evaluate(el => el.value);
+
+        console.log('Invalid min area from JSON:', invalidMinArea);
+        console.log('Selected min area after invalid input:', selectedMinArea);
+
+        expect(selectedMinArea).not.toBe(invalidMinArea);
     }
 
     async applyPostedSinceFilter() {
@@ -228,7 +263,7 @@ exports.RentPropertyPage = class RentPropertyPage {
             'domcontentloaded'
         );
 
-        await newPage.waitForTimeout(5000);
+        // await newPage.waitForTimeout(5000);
         return newPage;
     }
 
@@ -248,4 +283,3 @@ exports.RentPropertyPage = class RentPropertyPage {
     }
 
 }
-   
