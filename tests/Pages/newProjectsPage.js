@@ -55,14 +55,31 @@ class NewProjectsPage {
         await expect(this.searchField).toBeVisible();
     }
 
-    async applyBhkFilter() {
+   async applyBhkFilter() {
 
-        await this.bhkFilter.click();
-        const twoBhk = this.page.locator('.filter__common__component__item__label.bhk').filter({ hasText: '2 BHK' }).first();
-        await twoBhk.click();
-        await this.page.locator('.filterspop__cta').filter({ hasText: /Apply|Done/ }).first().click();
-        await this.page.waitForTimeout(2000);
-    }
+    // Open BHK filter
+    await this.bhkFilter.click();
+
+    // 2 BHK option
+    const twoBhk = this.page.locator('text=2 BHK').first();
+
+    // Wait until visible
+    await expect(twoBhk).toBeVisible({timeout: 30000});
+
+    // Click option
+    await twoBhk.click();
+
+    // Apply button
+    const applyButton = this.page.locator('.filterspop__cta').filter({hasText: /Apply|Done/}).first();
+
+    // Wait and click
+    await expect(applyButton).toBeVisible();
+
+    await applyButton.click();
+
+    // Wait for cards reload
+    await expect(this.projectCards.first()).toBeVisible();
+}
 
     async applyBudgetFilter() {
 
