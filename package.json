@@ -20,11 +20,11 @@
   "homepage": "https://github.com/Prikshit-13/MAGICBRICKS-TEAM3-#readme",
   "devDependencies": {
     "@playwright/test": "^1.59.1",
-    "@types/node": "^25.6.0"
+    "@types/node": "^25.6.0",
+    "multiple-cucumber-html-reporter": "^3.10.0"
   },
   "dependencies": {
     "@cucumber/cucumber": "^12.8.2",
-    "multiple-cucumber-html-reporter": "^3.10.0",
     "playwright-bdd": "^8.5.0"
   }
 }

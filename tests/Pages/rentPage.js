@@ -152,9 +152,9 @@ exports.RentPropertyPage = class RentPropertyPage {
     // }
 
     async openMoreFilters() {
-        await this.moreFilters.waitFor({
-            state: 'visible'
-        });
+        // await this.moreFilters.waitFor({
+        //     state: 'visible'
+        // });
         await this.moreFilters.click();
     }
 
@@ -164,22 +164,22 @@ exports.RentPropertyPage = class RentPropertyPage {
     }
 
     async applyInvalidMinArea(invalidMinArea) {
-    this.invalidMinAreaErrorCaught = false;
+        this.invalidMinAreaErrorCaught = false;
 
-    await this.minArea.waitFor({
-        state: 'visible',
-        timeout: 60000
-    });
+        await this.minArea.waitFor({
+            state: 'visible',
+            timeout: 60000
+        });
 
-    try {
-        await this.minArea.selectOption(invalidMinArea);
-    } catch (error) {
-        this.invalidMinAreaErrorCaught = true;
+        try {
+            await this.minArea.selectOption(invalidMinArea);
+        } catch (error) {
+            this.invalidMinAreaErrorCaught = true;
 
-        console.log('Invalid minimum area was rejected by dropdown.');
-        console.log('Error message:', error.message);
+            console.log('Invalid minimum area was rejected by dropdown.');
+            console.log('Error message:', error.message);
+        }
     }
-}
 
     async verifyInvalidMinAreaNotSelected(invalidMinArea) {
         expect(this.invalidMinAreaErrorCaught).toBeTruthy();

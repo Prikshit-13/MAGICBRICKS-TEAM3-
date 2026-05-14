@@ -1,271 +1,274 @@
-const { expect } = require('@playwright/test');
-
-exports.InteriorDesignerPage = class InteriorDesignerPage {
+// const { expect } = require('@playwright/test');
+
+// exports.InteriorDesignerPage = class InteriorDesignerPage {
+
+//     constructor(page) {
+//         this.page = global.page;
+//         this.initLocators();
+//     }
 
-    constructor(page) {
-        if (!page) {
-            throw new Error('Page is undefined. Check global.page in hooks.js');
-        }
+//     initLocators() {
+//         // Home page locators
+//         this.mbAdviceTab = this.page.locator(
+//             '//a[contains(normalize-space(),"MB Advice") or contains(normalize-space(),"Advice")]'
+//         );
+
+//         this.interiorDesignersOption = this.page.locator(
+//             '(//div[normalize-space()="Interior Designers Near You"]/following-sibling::ul/li)[3]'
+//         );
 
-        this.page = global.page;
-        this.initLocators();
-    }
+//         // Listing page locator
+//         // First designer heading
+//         this.firstInteriorDesignerHeading = this.page.locator(
+//             '(//h2[contains(@class,"intsrp__card--heading")])[1]'
+//         );
 
-    initLocators() {
-        // Home page locators
-        this.mbAdviceTab = this.page.locator(
-            '//a[contains(normalize-space(),"MB Advice") or contains(normalize-space(),"Advice")]'
-        );
-
-        this.interiorDesignersOption = this.page.locator(
-            '(//div[normalize-space()="Interior Designers Near You"]/following-sibling::ul/li)[3]'
-        );
+//         // If heading is inside anchor, this will be better
+//         this.firstInteriorDesignerAnchor = this.page.locator(
+//             '(//h2[contains(@class,"intsrp__card--heading")]/ancestor::a)[1]'
+//         );
+
+//         // If card is clickable
+//         this.firstInteriorDesignerCard = this.page.locator(
+//             '(//h2[contains(@class,"intsrp__card--heading")]/ancestor::*[contains(@class,"intsrp__card")])[1]'
+//         );
+
+//         // Designer detail page
+//         this.fourBhkDesignIdeas = this.page.locator(
+//             '(//*[contains(normalize-space(),"4 BHK") or contains(normalize-space(),"4BHK")])[1]'
+//         );
 
-        // Listing page locator
-        // First designer heading
-        this.firstInteriorDesignerHeading = this.page.locator(
-            '(//h2[contains(@class,"intsrp__card--heading")])[1]'
-        );
+//         // Design ideas page
+//         this.firstDesignIdea = this.page.locator(
+//             '(//a[contains(normalize-space(),"View") or contains(@href,"design") or contains(@href,"interior")])[1]'
+//         );
 
-        // If heading is inside anchor, this will be better
-        this.firstInteriorDesignerAnchor = this.page.locator(
-            '(//h2[contains(@class,"intsrp__card--heading")]/ancestor::a)[1]'
-        );
-
-        // If card is clickable
-        this.firstInteriorDesignerCard = this.page.locator(
-            '(//h2[contains(@class,"intsrp__card--heading")]/ancestor::*[contains(@class,"intsrp__card")])[1]'
-        );
-
-        // Designer detail page
-        this.fourBhkDesignIdeas = this.page.locator(
-            '(//*[contains(normalize-space(),"4 BHK") or contains(normalize-space(),"4BHK")])[1]'
-        );
+//         // this.firstDesignIdea = this.page.locator(
+//         //     '//a[contains(normalize-space(),"View") or contains(@href,"design") or contains(@href,"interior")]'
+//         // );
 
-        // Design ideas page
-        this.firstDesignIdea = this.page.locator(
-            '(//a[contains(normalize-space(),"View") or contains(@href,"design") or contains(@href,"interior")])[1]'
-        );
+//         // Final page
+//         this.getPriceEstimateButton = this.page.locator(
+//             '//*[contains(normalize-space(),"Get Price Estimate")]'
+//         );
 
-        // this.firstDesignIdea = this.page.locator(
-        //     '//a[contains(normalize-space(),"View") or contains(@href,"design") or contains(@href,"interior")]'
-        // );
+//         this.callScheduledMessage = this.page.locator(
+//             '//*[contains(normalize-space(),"Your call is scheduled")]'
+//         );
+//     }
 
-        // Final page
-        this.getPriceEstimateButton = this.page.locator(
-            '//*[contains(normalize-space(),"Get Price Estimate")]'
-        );
+//     async switchToPage(newPage) {
+//         this.page = newPage;
 
-        this.callScheduledMessage = this.page.locator(
-            '//*[contains(normalize-space(),"Your call is scheduled")]'
-        );
-    }
+//         // important for your hooks style
+//         global.page = newPage;
 
-    async switchToPage(newPage) {
-        this.page = newPage;
+//         this.initLocators();
 
-        // important for your hooks style
-        global.page = newPage;
+//         await this.page.waitForLoadState('domcontentloaded').catch(() => {});
+//         await this.page.waitForTimeout(2000);
+//     }
 
-        this.initLocators();
+//     async handlePossibleNewPageAfterClick(clickAction) {
+//         const popupPromise = this.page.waitForEvent('popup', {
+//             timeout: 15000
+//         }).catch(() => null);
 
-        await this.page.waitForLoadState('domcontentloaded').catch(() => {});
-        await this.page.waitForTimeout(2000);
-    }
+//         const contextPagePromise = this.page.context().waitForEvent('page', {
+//             timeout: 15000
+//         }).catch(() => null);
 
-    async handlePossibleNewPageAfterClick(clickAction) {
-        const popupPromise = this.page.waitForEvent('popup', {
-            timeout: 15000
-        }).catch(() => null);
+//         await clickAction();
 
-        const contextPagePromise = this.page.context().waitForEvent('page', {
-            timeout: 15000
-        }).catch(() => null);
+//         const popupPage = await popupPromise;
+//         const contextPage = await contextPagePromise;
 
-        await clickAction();
+//         const newPage = popupPage || contextPage;
 
-        const popupPage = await popupPromise;
-        const contextPage = await contextPagePromise;
+//         if (newPage && newPage !== this.page) {
+//             await this.switchToPage(newPage);
+//             return newPage;
+//         }
 
-        const newPage = popupPage || contextPage;
+//         await this.page.waitForLoadState('domcontentloaded').catch(() => {});
+//         await this.page.waitForTimeout(2000);
 
-        if (newPage && newPage !== this.page) {
-            await this.switchToPage(newPage);
-            return newPage;
-        }
+//         return this.page;
+//     }
 
-        await this.page.waitForLoadState('domcontentloaded').catch(() => {});
-        await this.page.waitForTimeout(2000);
+//     async openHomePage() {
+//         await this.page.goto(
+//             'https://www.magicbricks.com/',
+//             { waitUntil: 'domcontentloaded' }
+//         );
 
-        return this.page;
-    }
+//         await this.page.waitForTimeout(3000);
+//     }
 
-    async openHomePage() {
-        await this.page.goto(
-            'https://www.magicbricks.com/',
-            { waitUntil: 'domcontentloaded' }
-        );
+//     async openMBAdviceTab() {
+//         await this.mbAdviceTab.first().waitFor({
+//             state: 'visible',
+//             timeout: 60000
+//         });
 
-        await this.page.waitForTimeout(3000);
-    }
+//         await this.mbAdviceTab.first().hover();
 
-    async openMBAdviceTab() {
-        await this.mbAdviceTab.first().waitFor({
-            state: 'visible',
-            timeout: 60000
-        });
+//         await this.page.waitForTimeout(1500);
+//     }
 
-        await this.mbAdviceTab.first().hover();
+//     async clickInteriorDesignersOption() {
+//         await this.interiorDesignersOption.waitFor({
+//             state: 'visible',
+//             timeout: 60000
+//         });
 
-        await this.page.waitForTimeout(1500);
-    }
+//         await this.handlePossibleNewPageAfterClick(async () => {
+//             await this.interiorDesignersOption.click({ force: true });
+//         });
+//     }
 
-    async clickInteriorDesignersOption() {
-        await this.interiorDesignersOption.waitFor({
-            state: 'visible',
-            timeout: 60000
-        });
+//     async getFirstDesignerClickableLocator() {
+//         await this.page.waitForLoadState('domcontentloaded').catch(() => {});
+//         await this.page.waitForTimeout(3000);
 
-        await this.handlePossibleNewPageAfterClick(async () => {
-            await this.interiorDesignersOption.click({ force: true });
-        });
-    }
+//         const anchorCount = await this.firstInteriorDesignerAnchor.count();
 
-    async getFirstDesignerClickableLocator() {
-        await this.page.waitForLoadState('domcontentloaded').catch(() => {});
-        await this.page.waitForTimeout(3000);
+//         if (anchorCount > 0) {
+//             return this.firstInteriorDesignerAnchor.first();
+//         }
 
-        const anchorCount = await this.firstInteriorDesignerAnchor.count();
+//         const cardCount = await this.firstInteriorDesignerCard.count();
 
-        if (anchorCount > 0) {
-            return this.firstInteriorDesignerAnchor.first();
-        }
+//         if (cardCount > 0) {
+//             return this.firstInteriorDesignerCard.first();
+//         }
 
-        const cardCount = await this.firstInteriorDesignerCard.count();
+//         return this.firstInteriorDesignerHeading.first();
+//     }
 
-        if (cardCount > 0) {
-            return this.firstInteriorDesignerCard.first();
-        }
+//     async selectFirstInteriorDesigner() {
+//         const designerLocator = await this.getFirstDesignerClickableLocator();
 
-        return this.firstInteriorDesignerHeading.first();
-    }
+//         await designerLocator.waitFor({
+//             state: 'visible',
+//             timeout: 60000
+//         });
 
-    async selectFirstInteriorDesigner() {
-        const designerLocator = await this.getFirstDesignerClickableLocator();
+//         await designerLocator.scrollIntoViewIfNeeded();
 
-        await designerLocator.waitFor({
-            state: 'visible',
-            timeout: 60000
-        });
+//         console.log(
+//             'First designer text:',
+//             await designerLocator.innerText().catch(() => 'No text found')
+//         );
 
-        await designerLocator.scrollIntoViewIfNeeded();
+//         await this.handlePossibleNewPageAfterClick(async () => {
+//             await designerLocator.click({ force: true });
+//         });
+//     }
 
-        console.log(
-            'First designer text:',
-            await designerLocator.innerText().catch(() => 'No text found')
-        );
 
-        await this.handlePossibleNewPageAfterClick(async () => {
-            await designerLocator.click({ force: true });
-        });
-    }
+//     async scrollToBottom() {
+//         await this.page.waitForLoadState('domcontentloaded').catch(() => {});
 
-    // async selectFirstDesignIdea() {
-    //     await this.page.waitForLoadState('domcontentloaded').catch(() => {});
-    //     await this.page.waitForTimeout(2000);
+//         await this.page.evaluate(() => {
+//             window.scrollTo(0, document.body.scrollHeight);
+//         });
 
-    //     const viewButtons = this.page.locator('//a[normalize-space()="View"]');
+//         await this.page.waitForTimeout(3000);
+//     }
 
-    //     const count = await viewButtons.count();
-    //     console.log('View button count:', count);
+//     // async openFourBhkDesignIdeas() {
+//     //     await this.fourBhkDesignIdeas.waitFor({
+//     //         state: 'visible',
+//     //         timeout: 60000
+//     //     });
 
-    //     for (let i = 0; i < count; i++) {
-    //         const button = viewButtons.nth(i);
+//     //     await this.fourBhkDesignIdeas.scrollIntoViewIfNeeded();
 
-    //         const visible = await button.isVisible().catch(() => false);
+//     //     await this.fourBhkDesignIdeas.click({ force: true });
 
-    //         if (visible) {
-    //             await button.evaluate(el => {
-    //                 el.scrollIntoView({
-    //                     block: 'center',
-    //                     inline: 'center'
-    //                 });
-    //             });
+//     //     await this.page.waitForTimeout(3000);
+//     // }
 
-    //             await this.page.waitForTimeout(1000);
+//     async openFourBhkDesignIdeas() {
+//         await this.fourBhkDesignIdeas.waitFor({
+//             state: 'visible',
+//             timeout: 60000
+//         });
 
-    //             await this.handlePossibleNewPageAfterClick(async () => {
-    //                 await button.evaluate(el => el.click());
-    //             });
+//         await this.fourBhkDesignIdeas.scrollIntoViewIfNeeded();
 
-    //             return;
-    //         }
-    //     }
+//         await this.handlePossibleNewPageAfterClick(async () => {
+//             await this.fourBhkDesignIdeas.click();
+//         });
 
-    //     throw new Error('No visible View button found');
-    // }
+//         await this.page.waitForLoadState('domcontentloaded').catch(() => {});
+//         await this.page.waitForTimeout(3000);
 
-    async scrollToBottom() {
-        await this.page.waitForLoadState('domcontentloaded').catch(() => {});
+//         console.log('Current page after 4BHK click:', await this.page.url());
+//     }
 
-        await this.page.evaluate(() => {
-            window.scrollTo(0, document.body.scrollHeight);
-        });
 
-        await this.page.waitForTimeout(3000);
-    }
+//     // async selectFirstDesignIdea() {
+//     //     const firstDesignIdea = this.page.locator('a[href*="interior-design-ideas"]').first();
 
-    async openFourBhkDesignIdeas() {
-        await this.fourBhkDesignIdeas.waitFor({
-            state: 'visible',
-            timeout: 60000
-        });
+//     //     await firstDesignIdea.scrollIntoViewIfNeeded();
+//     //     await firstDesignIdea.waitFor({ state: 'visible', timeout: 10000 });
+//     //     await firstDesignIdea.click();
+//     // }
 
-        await this.fourBhkDesignIdeas.scrollIntoViewIfNeeded();
+//     async selectFirstDesignIdea() {
+//     const firstDesignIdea = this.page
+//         .locator('a[href*="interior-design-ideas"], a[href*="design-ideas"], a[href*="interior-design"]')
+//         .first();
 
-        await this.fourBhkDesignIdeas.click({ force: true });
+//     await firstDesignIdea.waitFor({
+//         state: 'visible',
+//         timeout: 60000
+//     });
 
-        await this.page.waitForTimeout(3000);
-    }
+//     await firstDesignIdea.scrollIntoViewIfNeeded();
 
-    async selectFirstDesignIdea() {
-        await this.firstDesignIdea.waitFor({
-            state: 'visible',
-            timeout: 60000
-        });
+//         console.log(
+//             'First design idea href:',
+//             await firstDesignIdea.getAttribute('href').catch(() => 'No href found')
+//         );
 
-        await this.firstDesignIdea.scrollIntoViewIfNeeded();
+//         await this.handlePossibleNewPageAfterClick(async () => {
+//             await firstDesignIdea.click({ force: true });
+//         });
 
-        await this.handlePossibleNewPageAfterClick(async () => {
-            await this.firstDesignIdea.click({ force: true });
-        });
-    }
+//         await this.page.waitForLoadState('domcontentloaded').catch(() => {});
+//         await this.page.waitForTimeout(3000);
 
-    async clickGetPriceEstimate() {
-        await this.getPriceEstimateButton.waitFor({
-            state: 'visible',
-            timeout: 60000
-        });
+//         // console.log('Current page after design idea click:', await this.page.url());
+//     }
 
-        await this.getPriceEstimateButton.scrollIntoViewIfNeeded();
+//     async clickGetPriceEstimate() {
+//         await this.getPriceEstimateButton.waitFor({
+//             state: 'visible',
+//             timeout: 60000
+//         });
 
-        await this.getPriceEstimateButton.click({ force: true });
+//         await this.getPriceEstimateButton.scrollIntoViewIfNeeded();
 
-        await this.page.waitForTimeout(2000);
-    }
+//         await this.getPriceEstimateButton.click({ force: true });
 
-    async verifyCallScheduledMessage() {
-        await this.callScheduledMessage.waitFor({
-            state: 'visible',
-            timeout: 60000
-        });
+//         await this.page.waitForTimeout(2000);
+//     }
 
-        await expect(this.callScheduledMessage).toContainText(
-            'Your call is scheduled'
-        );
+//     async verifyCallScheduledMessage() {
+//         await this.callScheduledMessage.waitFor({
+//             state: 'visible',
+//             timeout: 60000
+//         });
 
-        const message = await this.callScheduledMessage.textContent();
+//         await expect(this.callScheduledMessage).toContainText(
+//             'Your call is scheduled'
+//         );
 
-        console.log('Success message is:', message.trim());
-    }
-};
+//         const message = await this.callScheduledMessage.textContent();
+
+//         console.log('Success message is:', message.trim());
+//     }
+// };

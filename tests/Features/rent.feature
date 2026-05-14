@@ -28,6 +28,8 @@ Feature: Rent Property End-to-End Flow
   Scenario: User applies invalid minimum covered area filter
     Given user is on the home page
     When user clicks on Rent tab
+    And the user applies property type filter
+    And the user applies budget filter
     And the user clicks on Search button
     And user opens More Filters
     And user applies invalid minimum covered area filter
