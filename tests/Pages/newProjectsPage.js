@@ -436,7 +436,7 @@ class NewProjectsPage {
         await this.page.screenshot({
 
             path:
-            `results/newProject-${Date.now()}.png`,
+            `results/newProjects/newProject-${Date.now()}.png`,
 
             fullPage: true
         });

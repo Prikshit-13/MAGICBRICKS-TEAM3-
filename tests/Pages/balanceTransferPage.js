@@ -157,7 +157,7 @@ class BalanceTransferPage {
 
         await this.page.screenshot({
 
-            path: `reports/balanceTransfer-${Date.now()}.png`,
+            path: `reports/loanBalanceTransfer/balanceTransfer-${Date.now()}.png`,
 
             fullPage: true
         });

@@ -1,5 +1,5 @@
+//Imports
 const { When, Then } = require('@cucumber/cucumber');
-
 const testData = require('../Data/newProjectsData.json');
 
 
@@ -19,9 +19,9 @@ Then('New Projects page should be displayed', async function () {
 });
 
 
-// =========================
+
 // POSITIVE FLOW
-// =========================
+
 
 When('user searches project using {string}', async function (dataKey) {
 
@@ -77,9 +77,7 @@ Then('user captures screenshot of project details', async function () {
 });
 
 
-// =========================
 // NEGATIVE FLOW
-// =========================
 
 When('user searches invalid project using {string}', async function (dataKey) {
 
