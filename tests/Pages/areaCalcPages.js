@@ -59,6 +59,17 @@ class AreaCalculatorPage {
 
     async clickConversionType(conversionType) {
         await this.dismissPopups();
+
+        const conversionUrls = {
+            'Bigha to Sqft': 'https://www.magicbricks.com/bigha-to-square-feet-pppfa'
+        };
+
+        // This direct URL avoids menu issues and opens the exact converter page.
+        if (conversionUrls[conversionType]) {
+            await this.page.goto(conversionUrls[conversionType], { waitUntil: 'domcontentloaded' });
+            await this.dismissPopups();
+            return;
+        }
         
         const conversionLink = this.page.locator(`a:has-text("${conversionType}"):visible`).first();
         await conversionLink.scrollIntoViewIfNeeded();
@@ -75,35 +86,46 @@ class AreaCalculatorPage {
 
     async selectState(state) {
         await this.stateDropdown.click();
-        
-        try {
-            await this.stateDropdown.fill(state);
-        } catch (e) {}
-        
-        const stateOption = this.page.getByText(state, { exact: true }).last();
-        try {
-            await stateOption.click({ timeout: 3000 });
-        } catch {
-            await this.stateDropdown.press('Enter');
-        }
+
+        const stateOption = this.page
+            .locator('#stateSearchInputId-lock .areaCalc__cnvrtrSec__option')
+            .filter({ hasText: state })
+            .first();
+
+        await stateOption.click();
+        await expect(this.stateDropdown).toHaveValue(state);
     }
 
     async enterUnits(units) {
-        await this.numberInput.click();
-        await this.page.keyboard.press('Control+A');
-        await this.page.keyboard.press('Backspace');
-        await this.numberInput.fill(units);
+
+    await this.numberInput.click();
+
+    await this.page.keyboard.press('Control+A');
+
+    await this.page.keyboard.press('Backspace');
+
+    // The site calculates only when keys are typed, so do not use fill() here.
+    await this.numberInput.type(units);
+
+    // Trigger calculation
+    await this.page.keyboard.press('Tab');
+
+    await expect(this.page.locator('#convertedFromNum')).toHaveText(units);
     }
 
     async getConvertedValue() {
 
-    await this.page.waitForSelector('#toNumber');
+    const valueLocator = this.page.locator('#toNumber');
 
-    const value = await this.page.locator('#toNumber').textContent();
+    await expect(valueLocator).toBeVisible({ timeout: 10000 });
+
+    await expect(valueLocator).not.toHaveText('', { timeout: 10000 });
+
+    const value = await valueLocator.textContent();
 
     const unit = await this.page.locator('#convertedTo').textContent();
 
-    return `${value.trim()} ${unit.trim()}`;
+    return `${value?.trim()} ${unit?.trim()}`;
     }
 }
 

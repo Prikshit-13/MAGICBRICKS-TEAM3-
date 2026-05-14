@@ -30,9 +30,11 @@ class PGSearchPage {
 
         // search button
         this.searchBtn = page.locator(`//div[@class="mb-search__btn"]`);
+        this.locationError = page.locator(`#location-error-id`);
 
         // PG listing card (second result) — using CSS to avoid class mismatch with extra classes
-        this.cardSelect = page.locator(`(//div[@class="m-srp-card__roomInfo"])[2]`);
+        this.cardSelect = page.locator(`.m-srp-card`);
+        this.missingPageText = page.getByText(/Oops\.\.\. something is missing/i);
 
         // contact owner button on the PG detail page
         this.contactBtn = page.locator(`a.pg-detail__action--btn.btn-pink, button.pg-contact-btn-web, .m-srp-card__btn--primary-o`).first();
@@ -43,6 +45,15 @@ class PGSearchPage {
         // common popups that can appear on the site
         this.popupClose = page.locator(`.mbB2cPS__close a`);
         this.modalCross = page.locator(`//div[@class="onmodal__cross"]`);
+    }
+
+    usePage(page) {
+        this.page = page;
+        this.contactBtn = page.locator(`a.pg-detail__action--btn.btn-pink, button.pg-contact-btn-web, .m-srp-card__btn--primary-o`).first();
+        this.success = page.locator(`//div[@class="thank-you__pg__success--msg"]`);
+        this.popupClose = page.locator(`.mbB2cPS__close a`);
+        this.modalCross = page.locator(`//div[@class="onmodal__cross"]`);
+        this.missingPageText = page.getByText(/Oops\.\.\. something is missing/i);
     }
 
     // dismiss any popups or modals that show up randomly
@@ -160,11 +171,54 @@ class PGSearchPage {
 
     async selectCard() {
         await this.dismissPopups();
+        const resultsPage = this.page;
+        const resultCards = resultsPage.locator(`.m-srp-card`);
+
         // wait for listing cards to load on the results page
-        await this.cardSelect.waitFor({ state: 'visible', timeout: 20000 });
-        await this.cardSelect.scrollIntoViewIfNeeded();
-        await this.cardSelect.click();
-        await this.page.waitForLoadState('domcontentloaded');
+        await resultCards.first().waitFor({ state: 'visible', timeout: 20000 });
+
+        const cardsToTry = Math.min(await resultCards.count(), 8);
+
+        for (let index = 0; index < cardsToTry; index++) {
+            const card = resultCards.nth(index);
+
+            await card.scrollIntoViewIfNeeded();
+            const newPagePromise = resultsPage.context().waitForEvent('page', { timeout: 5000 }).catch(() => null);
+            await card.click();
+            const openedPage = await newPagePromise;
+            const targetPage = openedPage || resultsPage;
+
+            try {
+                await targetPage.waitForLoadState('domcontentloaded', { timeout: 10000 });
+            } catch {
+                // some Magicbricks card clicks update the page without a full load event
+            }
+
+            await targetPage.waitForTimeout(1500);
+
+            const missingPageText = targetPage.getByText(/Oops\.\.\. something is missing/i);
+            const openedMissingPage = targetPage.url().includes('/secure-login') ||
+                await missingPageText.isVisible().catch(() => false);
+
+            if (openedMissingPage) {
+                if (openedPage) {
+                    await openedPage.close();
+                    await resultsPage.bringToFront();
+                } else {
+                    await resultsPage.goBack({ waitUntil: 'domcontentloaded' });
+                }
+
+                await resultCards.first().waitFor({ state: 'visible', timeout: 20000 });
+                continue;
+            }
+
+            this.usePage(targetPage);
+            await this.dismissPopups();
+            await expect(this.contactBtn).toBeVisible({ timeout: 15000 });
+            return;
+        }
+
+        throw new Error("No valid PG property card opened from the search results.");
     }
 
     async clickContact() {
@@ -192,7 +246,8 @@ class PGSearchPage {
     }
 
     async verifyCityRequiredFailure() {
-        throw new Error("Expected failure: PG search was submitted without selecting a city.");
+        await expect(this.locationError).toBeVisible({ timeout: 5000 });
+        await expect(this.locationError).toHaveText("Please enter a valid Location or Project");
     }
 }
 

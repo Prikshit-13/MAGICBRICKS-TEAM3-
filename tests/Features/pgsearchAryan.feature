@@ -15,7 +15,7 @@ Feature: PG Search
 
         Examples:
             | city      |
-            | Noida     |
+            | Lucknow   |
 
 
     @pgsearch @negative

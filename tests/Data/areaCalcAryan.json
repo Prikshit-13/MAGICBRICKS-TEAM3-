@@ -1,0 +1,29 @@
+{
+  "areaData": [
+    {
+      "conversionType": "Bigha to Sqft",
+      "state": "Uttar Pradesh",
+      "units": "10"
+    },
+    {
+      "conversionType": "Bigha to Sqft",
+      "state": "Punjab",
+      "units": "5"
+    },
+    {
+      "conversionType": "Bigha to Sqft",
+      "state": "Haryana",
+      "units": "8"
+    },
+    {
+      "conversionType": "Bigha to Sqft",
+      "state": "Rajasthan",
+      "units": "12"
+    },
+    {
+      "conversionType": "Bigha to Sqft",
+      "state": "Bihar",
+      "units": "15"
+    }
+  ]
+}

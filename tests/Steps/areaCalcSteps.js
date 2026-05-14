@@ -1,3 +1,4 @@
+
 const {
     Given,
     When,
@@ -12,6 +13,8 @@ const {
     expect
 } = require("@playwright/test");
 
+const testData = require("../Data/areaCalcAryan.json");
+
 Given('User opens magicbricks application', async function () {
 
     await global.areaCalculatorPage.openApplication();
@@ -22,33 +25,45 @@ When('User clicks on Area converter', async function () {
     await global.areaCalculatorPage.clickAreaConverter();
 });
 
-When('User selects {string} conversion type', async function (conversionType) {
+When('User performs area conversion for data row {int}', async function (dataRow) {
 
-    console.log(`Conversion Type: ${conversionType}`);
+    // Cucumber example rows start from 1, but array index starts from 0.
+    const data = testData.areaData[dataRow - 1];
 
-    await global.areaCalculatorPage.clickConversionType(conversionType);
-});
+    expect(data, `No test data found for row ${dataRow}`).toBeTruthy();
 
-When('User selects {string} state', async function (state) {
+    console.log(`Conversion Type: ${data.conversionType}`);
 
-    console.log(`State: ${state}`);
+    console.log(`State: ${data.state}`);
 
-    await global.areaCalculatorPage.selectState(state);
+    console.log(`Units: ${data.units}`);
+
+    await global.areaCalculatorPage.clickConversionType(
+        data.conversionType
+    );
+
+    // Select only the state for the current scenario.
+    await global.areaCalculatorPage.selectState(
+        data.state
+    );
 
     await expect(
         global.areaCalculatorPage.stateDropdown
-    ).toHaveValue(state);
-});
+    ).toHaveValue(data.state);
 
-When('User enters {string} units', async function (units) {
-
-    console.log(`Units: ${units}`);
-
-    await global.areaCalculatorPage.enterUnits(units);
+    // Enter only the units for the current scenario.
+    await global.areaCalculatorPage.enterUnits(
+        data.units
+    );
 
     await expect(
         global.areaCalculatorPage.numberInput
-    ).toHaveValue(units);
+    ).toHaveValue(data.units);
+
+    this.convertedValue =
+        await global.areaCalculatorPage.getConvertedValue();
+
+    console.log(`Converted Value: ${this.convertedValue}`);
 });
 
 When('User takes screenshot', async function () {
@@ -78,13 +93,8 @@ When('User takes screenshot', async function () {
 
 Then('Area Should get converted', async function () {
 
-    const convertedValue =
-        await global.areaCalculatorPage.getConvertedValue();
+    // If the value is empty, conversion did not happen.
+    expect(this.convertedValue).not.toBe("");
 
-    console.log(`Converted Value: ${convertedValue}`);
-
-    expect(convertedValue).not.toBe("");
+    console.log("Area converted successfully");
 });
-
-
-
